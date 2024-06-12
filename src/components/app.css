@@ -26,4 +26,18 @@ body {
     font-size: 24px;
     margin-bottom: 20px;
   }
-  
+  /* Ensure each section has display set to none initially except the active section */
+.section {
+  display: none;
+}
+
+/* Ensure only the active section is displayed */
+.section.active {
+  display: block;
+}
+
+/* Styling for active menu item */
+.menu li.active {
+  font-weight: bold;
+  background-color: #ddd;
+}

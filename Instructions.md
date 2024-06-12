@@ -1,6 +1,11 @@
 # To run the React App
 `npm install`
 `npm start`
+
+additionally :
+`npm install react react-dom chart.js`
+
+
 available in [localhost:3000](http://localhost:3000/)
 
 # To run django app
