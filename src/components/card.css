@@ -1,0 +1,45 @@
+.card, .storage-card {
+    background-color: #f1f1f1;
+    border-radius: 10px;
+    padding: 20px;
+    width: 23%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .card-header h2 {
+    margin: 0 0 10px;
+    font-size: 18px;
+  }
+  
+  .card-content h3 {
+    margin: 0;
+    font-size: 36px;
+  }
+  
+  .card-content p {
+    color: #888888;
+    margin: 5px 0 0;
+  }
+  .card {
+    background-color: #f1f1f1;
+    border-radius: 10px;
+    padding: 20px;
+    width: 23%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .card-header h2 {
+    margin: 0 0 10px;
+    font-size: 18px;
+  }
+  
+  .card-content h3 {
+    margin: 0;
+    font-size: 36px;
+  }
+  
+  .card-content p {
+    color: #888888;
+    margin: 5px 0 0;
+  }
+  

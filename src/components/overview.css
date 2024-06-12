@@ -1,0 +1,18 @@
+.cards {
+    display: flex;
+    justify-content: space-between;
+  }
+  .section {
+    margin-bottom: 20px;
+  }
+  
+  .section h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .cards {
+    display: flex;
+    justify-content: space-between;
+  }
+  

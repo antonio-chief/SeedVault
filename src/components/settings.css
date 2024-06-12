@@ -1,0 +1,16 @@
+.settings-content {
+    background-color: #f1f1f1;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .settings-content p {
+    font-size: 16px;
+    color: #333;
+  }
+  
+  .settings-content ul {
+    list-style: none;
+  }
+  
