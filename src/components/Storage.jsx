@@ -3,7 +3,7 @@ import './storage.css';
 
 function Storage() {
   return (
-    <section id="storage" className="section" style={{ display: 'none' }}>
+    <section id="storage" className="section" >
       <h1>Storage Information</h1>
       <div className="storage-cards">
         <div className="storage-card">

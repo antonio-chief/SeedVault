@@ -3,7 +3,7 @@ import './settings.css';
 
 function Settings() {
   return (
-    <section id="settings" className="section" style={{ display: 'none' }}>
+    <section id="settings" className="section">
       <h1>Settings</h1>
       <div className="settings-content">
         <p>Manage your application settings here.</p>
