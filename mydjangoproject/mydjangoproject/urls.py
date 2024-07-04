@@ -12,26 +12,14 @@ Class-based views
 Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
-"""
+"""# mydjangoproject/urls.py
 from django.contrib import admin
-# mydjangoproject/urls.py
-from django.urls import path, include, re_path
-from mydjangoapp.views import SeedViewSet # Adjust import if necessary
+from django.urls import path, include
+from django.views.generic.base import RedirectView
 
-
-from mydjangoapp.views import *
-from rest_framework.routers import DefaultRouter
-
+# URL patterns for the project
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', include('mydjangoapp.urls')),  # Adjust if your app has a different name
+    path('admin/', admin.site.urls),  # Admin interface URL
+    #path('', RedirectView.as_view(url='seeds/')),  # Redirect to seeds API by default
+    path('', include('mydjangoapp.urls')),  # Include app-specific URLs
 ]
-
-# Optionally, if using viewsets and routers:
-
-
-router = DefaultRouter()
-router.register(r'seedvault', SeedViewSet)
-
-urlpatterns += router.urls
-
