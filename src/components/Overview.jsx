@@ -1,24 +1,24 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import Card from './Card';
+import axios from 'axios';
 import './overview.css';
 
-function Overview() {
+const Overview = () => {
   const [seeds, setSeeds] = useState([]);
   const [activeTab, setActiveTab] = useState('overview');
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchSeedsData = async () => {
       try {
-        const response = await axios.get('http://127.0.0.1:8000/seeds/');
+        const response = await axios.get('http://127.0.0.1:8002/seeds/');//TODO: change to the port to your django port
         setSeeds(response.data);
       } catch (error) {
-        console.error("Error fetching seed data:", error);
+        console.error('Error fetching seeds data:', error);
         setSeeds([]);
       }
     };
 
-    fetchData();
+    fetchSeedsData();
   }, []);
 
   const handleTabClick = (tab) => {
@@ -51,9 +51,13 @@ function Overview() {
           <div>
             <h2>Overview</h2>
             <div className="cards">
-              {seeds.map((seed) => (
-                <Card key={seed.SeedID} title={seed.SeedType} value={seed.SeedQuantity} unit="seeds" />
-              ))}
+              {seeds.length > 0 ? (
+                seeds.map((seed) => (
+                  <Card key={seed.SeedID} title={seed.SeedType} value={seed.SeedQuantity} unit="seeds" />
+                ))
+              ) : (
+                <p>No seeds data available.</p>
+              )}
             </div>
           </div>
         )}
@@ -81,6 +85,6 @@ function Overview() {
       </div>
     </section>
   );
-}
+};
 
 export default Overview;

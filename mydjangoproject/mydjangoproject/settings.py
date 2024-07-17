@@ -79,22 +79,15 @@ WSGI_APPLICATION = 'mydjangoproject.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-'''DATABASES = {
+DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
 
     }
 }
-'''
-# mydjangoapp/settings.py
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'djongo',
-        'NAME': 'seedvault',  # actual database name
-         }
-}
+
 
 
 # Password validation
@@ -152,3 +145,21 @@ REST_FRAMEWORK = {'DEFAULT_PERMISSION_CLASSES': [
 
 CORS_ORIGIN_ALLOW_ALL = True
 
+
+import os
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'loggers': {
+        'django.db.backends': {
+            'level': 'DEBUG',
+            'handlers': ['console'],
+        },
+    },
+}

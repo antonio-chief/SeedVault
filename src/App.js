@@ -1,6 +1,5 @@
-//App.js
+// frontend/src/App.js
 import React, { Component } from 'react';
-import axios from 'axios';
 import Sidebar from './components/Sidebar';
 import Overview from './components/Overview';
 import Storage from './components/Storage';
@@ -11,14 +10,13 @@ import Header from './components/Header';
 import Help from './components/Help';
 import FAQ from './components/FAQ';
 import About from './components/About';
-import { fetchSeeds, fetchMonitoring } from './services/api'; // Import your new API functions
+import axios from 'axios';
 import './App.css';
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      details: [],
       seeds: [], // Initialize seeds in the state
       activeSection: 'overview', // Initialize active section here
     };
@@ -30,27 +28,15 @@ class App extends Component {
 
   loadData = async () => {
     try {
-      // Fetch data from APIs
-      const seedsData = await fetchSeeds();
-      const monitoringData = await fetchMonitoring();
-
-      // Update state with fetched data
-      this.setState({
-        seeds: seedsData,
-        monitoring: monitoringData,
-      });
-
-      // Fetch initial details data
-      const res = await axios.get('http://127.0.0.1:8000/seeds/');
-      const data = res.data;
-      this.setState({ details: data });
+      const response = await axios.get('http://127.0.0.1:8000')
+      this.setState({ seeds: response.data });
     } catch (error) {
-      console.error('Error fetching data:', error);
+      console.error('Error fetching seed data:', error);
     }
   };
 
   render() {
-    const { activeSection, details, seeds } = this.state; // Extract seeds from state
+    const { activeSection, seeds } = this.state; // Extract seeds from state
 
     return (
       <div className="container">
@@ -72,11 +58,6 @@ class App extends Component {
             {activeSection === 'help' && <Help />}
             {activeSection === 'faq' && <FAQ />}
             {activeSection === 'about' && <About />}
-
-            {/* Render details data */}
-            {details.map((output, id) => (
-              <div key={id}>{output}</div>
-            ))}
           </main>
         </div>
       </div>

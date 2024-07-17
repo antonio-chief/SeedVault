@@ -13,7 +13,7 @@ const Reports = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('http://127.0.0.1:8000/monitoring/');
+        const response = await axios.get('http://127.0.0.1:8002/monitoring/');//TODO: Change port according to your django default
         return response.data;
       } catch (error) {
         console.error("Error fetching monitoring data:", error);
@@ -137,70 +137,67 @@ const Reports = () => {
     <div>
       <section id="reports" className="section">
         <h1>Reports</h1>
-        
-                    {/* Tabs Navigation */}
-      <div className="tab-navigation">
-        <button className={activeTab === 'reports' ? 'active' : ''} onClick={() => handleTabClick('reports')}>
-          Reports
-        </button>
-        <button className={activeTab === 'temperature' ? 'active' : ''} onClick={() => handleTabClick('temperature')}>
-          Temperature
-        </button>
-        <button className={activeTab === 'light' ? 'active' : ''} onClick={() => handleTabClick('light')}>
-          Light Exposure
-        </button>
-        <button className={activeTab === 'moisture' ? 'active' : ''} onClick={() => handleTabClick('moisture')}>
-          Moisture
-        </button>
-      </div>
+
+        {/* Tabs Navigation */}
+        <div className="tab-navigation">
+          <button className={activeTab === 'reports' ? 'active' : ''} onClick={() => handleTabClick('reports')}>
+            Reports
+          </button>
+          <button className={activeTab === 'temperature' ? 'active' : ''} onClick={() => handleTabClick('temperature')}>
+            Temperature
+          </button>
+          <button className={activeTab === 'light' ? 'active' : ''} onClick={() => handleTabClick('light')}>
+            Light Exposure
+          </button>
+          <button className={activeTab === 'moisture' ? 'active' : ''} onClick={() => handleTabClick('moisture')}>
+            Moisture
+          </button>
+        </div>
 
         {/* Tab Content */}
-      <div className="tab-content">
-        {activeTab === 'reports' && (
-          <div>
-            <h2>Reports</h2>
-            <div className="reports">
-          <div className="recent-reports">
-            <h2>Recent Reports</h2>
-            <canvas ref={lineChartRef} id="lineChart"></canvas>
-            {data.length === 0 && <p>No monitoring data available</p>}
-          </div>
-          <div className="chart-by-percent">
-            <h2>Distribution by Percentage</h2>
-            <canvas ref={doughnutChartRef} id="doughnutChart"></canvas>
-            {data.length === 0 && <p>No monitoring data available</p>}
-          </div>
+        <div className="tab-content">
+          {activeTab === 'reports' && (
+            <div>
+              <h2>Reports</h2>
+              <div className="reports">
+                <div className="recent-reports">
+                  <h2>Recent Reports</h2>
+                  <canvas ref={lineChartRef} id="lineChart"></canvas>
+                  {data.length === 0 && <p>No monitoring data available</p>}
+                </div>
+                <div className="chart-by-percent">
+                  <h2>Distribution by Percentage</h2>
+                  <canvas ref={doughnutChartRef} id="doughnutChart"></canvas>
+                  {data.length === 0 && <p>No monitoring data available</p>}
+                </div>
+              </div>
+            </div>
+          )}
+
+          {activeTab === 'temperature' && (
+            <div>
+              <h2>Temperature</h2>
+              {/* Add content for Temperature tab */}
+            </div>
+          )}
+
+          {activeTab === 'light' && (
+            <div>
+              <h2>Light Exposure</h2>
+              {/* Add content for Light Exposure tab */}
+            </div>
+          )}
+
+          {activeTab === 'moisture' && (
+            <div>
+              <h2>Moisture</h2>
+              {/* Add content for Moisture tab */}
+            </div>
+          )}
         </div>
-          
-          </div>
-        )}
-
-        {activeTab === 'temperature' && (
-          <div>
-            <h2>Temperature</h2>
-            {/* Add content for Security */}
-          </div>
-        )}
-
-        {activeTab === 'light' && (
-          <div>
-            <h2>Light Exposure</h2>
-            {/* Add content for Monitoring */}
-          </div>
-        )}
-
-        {activeTab === 'moisture' && (
-          <div>
-            <h2>Moisture</h2>
-            {/* Add content for Recommendations */}
-          </div>
-        )}
-      </div>
-
-
-
       </section>
     </div>
   );
 };
+
 export default Reports;
