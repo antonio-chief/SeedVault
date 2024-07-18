@@ -1,23 +1,20 @@
 # mydjangoapp/views.py
+from rest_framework.decorators import api_view
 from rest_framework import viewsets
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-from .models import (
-    mydjangoapp_seeds, Monitoring, AdminFeedback, AdminSeedCatalog, AdminSubscription,
-    DampnessAnalytics, Events, LightExposureAnalytics, Security, Storage,
-    TemperatureAnalytics, User, Weather
-)
-from .serializers import (
-    SeedSerializer, MonitoringSerializer, AdminFeedbackSerializer, AdminSeedCatalogSerializer,
-    AdminSubscriptionSerializer, DampnessAnalyticsSerializer, EventsSerializer,
-    LightExposureAnalyticsSerializer, SecuritySerializer, StorageSerializer,
-    TemperatureAnalyticsSerializer, UserSerializer, WeatherSerializer
-)
+from .models import *
+from .serializers import *
 
 class SeedViewSet(viewsets.ModelViewSet):
     queryset = mydjangoapp_seeds.objects.all()
     serializer_class = SeedSerializer
+    def perform_create(self, serializer):
+        seed = serializer.save()
+        totals = Totals.objects.first()
+        totals.in_inventory += seed.SeedQuantity
+        totals.save()
 
 class MonitoringViewSet(viewsets.ModelViewSet):
     queryset = Monitoring.objects.all()
@@ -67,6 +64,35 @@ class WeatherViewSet(viewsets.ModelViewSet):
     queryset = Weather.objects.all()
     serializer_class = WeatherSerializer
 
+
+
+
+class WorkerViewSet(viewsets.ModelViewSet):
+    queryset = Worker.objects.all()
+    serializer_class = WorkerSerializer
+
+class RestrictedAreaViewSet(viewsets.ModelViewSet):
+    queryset = RestrictedArea.objects.all()
+    serializer_class = RestrictedAreaSerializer
+
+class SecurityBreachViewSet(viewsets.ModelViewSet):
+    queryset = SecurityBreach.objects.all()
+    serializer_class = SecurityBreachSerializer
+
+class EquipmentStatusViewSet(viewsets.ModelViewSet):
+    queryset = EquipmentStatus.objects.all()
+    serializer_class = EquipmentStatusSerializer
+
+
+
+class TotalsViewSet(viewsets.ModelViewSet):
+    queryset = Totals.objects.all()
+    serializer_class = TotalsSerializer
+
+class StorageFacilitiesViewSet(viewsets.ModelViewSet):
+    queryset = StorageFacilities.objects.all()
+    serializer_class = StorageFacilitiesSerializer
+
 class SeedAPIView(APIView):
     def get(self, request):
         seeds = mydjangoapp_seeds.objects.all()
@@ -77,6 +103,9 @@ class SeedAPIView(APIView):
         serializer = SeedSerializer(data=request.data)
         if serializer.is_valid(raise_exception=True):
             serializer.save()
+            totals = Totals.objects.first()
+            totals.in_inventory += mydjangoapp_seeds.SeedQuantity #was seed.SeedQuantity
+            totals.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
@@ -231,6 +260,86 @@ class WeatherAPIView(APIView):
 
     def post(self, request):
         serializer = WeatherSerializer(data=request.data)
+        if serializer.is_valid(raise_exception=True):
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class WorkerAPIView(APIView):
+    def get(self, request):
+        workers = Worker.objects.all()
+        serializer = WorkerSerializer(workers, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+    def post(self, request):
+        serializer = WorkerSerializer(data=request.data)
+        if serializer.is_valid(raise_exception=True):
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+class RestrictedAreaAPIView(APIView):
+    def get(self, request):
+        areas = RestrictedArea.objects.all()
+        serializer = RestrictedAreaSerializer(areas, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+    def post(self, request):
+        serializer = RestrictedAreaSerializer(data=request.data)
+        if serializer.is_valid(raise_exception=True):
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+class SecurityBreachAPIView(APIView):
+    def get(self, request):
+        breaches = SecurityBreach.objects.all()
+        serializer = SecurityBreachSerializer(breaches, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+    def post(self, request):
+        serializer = SecurityBreachSerializer(data=request.data)
+        if serializer.is_valid(raise_exception=True):
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+class EquipmentStatusAPIView(APIView):
+    def get(self, request):
+        equipment_statuses = EquipmentStatus.objects.all()
+        serializer = EquipmentStatusSerializer(equipment_statuses, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+    def post(self, request):
+        serializer = EquipmentStatusSerializer(data=request.data)
+        if serializer.is_valid(raise_exception=True):
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class TotalsAPIView(APIView):
+    def get(self, request):
+        totals = Totals.objects.first()
+        serializer = TotalsSerializer(totals)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+    def post(self, request):
+        serializer = TotalsSerializer(data=request.data)
+        if serializer.is_valid(raise_exception=True):
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+class StorageFacilitiesAPIView(APIView):
+    def get(self, request):
+        storage = StorageFacilities.objects.first()
+        serializer = StorageFacilitiesSerializer(storage)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+    def post(self, request):
+        serializer = StorageFacilitiesSerializer(data=request.data)
         if serializer.is_valid(raise_exception=True):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)

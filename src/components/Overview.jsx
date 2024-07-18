@@ -1,5 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import Card from './Card';
+import AddNew from './overview/AddNew';
+import PieCharts from './overview/PieCharts';
+import Database from './overview/Database';
+import Monitoring from './overview/monitoring/Monitoring';
+import Security from './overview/security/Security';
 import axios from 'axios';
 import './overview.css';
 
@@ -49,8 +54,8 @@ const Overview = () => {
       <div className="tab-content">
         {activeTab === 'overview' && (
           <div>
-            <h2>Overview</h2>
             <div className="cards">
+              <AddNew /> 
               {seeds.length > 0 ? (
                 seeds.map((seed) => (
                   <Card key={seed.SeedID} title={seed.SeedType} value={seed.SeedQuantity} unit="seeds" />
@@ -59,6 +64,12 @@ const Overview = () => {
                 <p>No seeds data available.</p>
               )}
             </div>
+            <div>
+              <PieCharts />
+            </div>
+            <div>
+              <Database />
+            </div>
           </div>
         )}
 
@@ -66,6 +77,7 @@ const Overview = () => {
           <div>
             <h2>Security Content</h2>
             {/* Add content for Security */}
+            <Security />
           </div>
         )}
 
@@ -73,12 +85,13 @@ const Overview = () => {
           <div>
             <h2>Monitoring Content</h2>
             {/* Add content for Monitoring */}
+            <Monitoring />
           </div>
         )}
 
         {activeTab === 'recommendations' && (
           <div>
-            <h2>Recommendations Content</h2>
+            <h2>Recommendations and Feedback</h2>
             {/* Add content for Recommendations */}
           </div>
         )}

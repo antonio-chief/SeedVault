@@ -1,17 +1,7 @@
 # mydjangoapp/urls.py
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
-from .views import (
-    SeedViewSet, MonitoringViewSet, AdminFeedbackViewSet, AdminSeedCatalogViewSet,
-    AdminSubscriptionViewSet, DampnessAnalyticsViewSet, EventsViewSet, 
-    LightExposureAnalyticsViewSet, SecurityViewSet, StorageViewSet, 
-    TemperatureAnalyticsViewSet, UserViewSet, WeatherViewSet,
-    SeedAPIView, MonitoringAPIView, AdminFeedbackAPIView, AdminSeedCatalogAPIView,
-    AdminSubscriptionAPIView, DampnessAnalyticsAPIView, EventsAPIView,
-    LightExposureAnalyticsAPIView, SecurityAPIView, StorageAPIView,
-    TemperatureAnalyticsAPIView, UserAPIView, WeatherAPIView
-)
-
+from .views import *
 # Define your router for DRF viewsets
 router = DefaultRouter()
 router.register(r'seeds', SeedViewSet, basename='seeds')
@@ -27,6 +17,12 @@ router.register(r'storage', StorageViewSet, basename='storage')
 router.register(r'temperature-analytics', TemperatureAnalyticsViewSet, basename='temperature-analytics')
 router.register(r'user', UserViewSet, basename='user')
 router.register(r'weather', WeatherViewSet, basename='weather')
+router.register(r'worker-viewset', WorkerViewSet)
+router.register(r'restricted-area-viewset', RestrictedAreaViewSet)
+router.register(r'security-breach-viewset', SecurityBreachViewSet)
+router.register(r'equipment-status-viewset', EquipmentStatusViewSet)
+router.register(r'totals-viewset', TotalsViewSet)
+router.register(r'storagefacilities-viewset', StorageFacilitiesViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),  # Include router URLs under 'api/' prefix
@@ -45,5 +41,10 @@ urlpatterns = [
     path('temperature-analytics/', TemperatureAnalyticsAPIView.as_view(), name='temperature-analytics-list-create'),
     path('user/', UserAPIView.as_view(), name='user-list-create'),
     path('weather/', WeatherAPIView.as_view(), name='weather-list-create'),
+    path('workers/', WorkerAPIView.as_view(), name='workers'),
+    path('restricted_areas/', RestrictedAreaAPIView.as_view(), name='restricted_areas'),
+    path('security_breaches/', SecurityBreachAPIView.as_view(), name='security_breaches'),
+    path('equipment_status/', EquipmentStatusAPIView.as_view(), name='equipment_status'),
+    path('totals/', TotalsAPIView.as_view(), name='totals'),
+    path('storagefacilities/', StorageFacilitiesAPIView.as_view(), name='storagefacilities'),
 ]
-

@@ -8,9 +8,14 @@ pymongo==4.8.0
 pytz==2024.1
 sqlparse==0.2.4
 typing_extensions==4.12.1
+#pillow
 
 
 #create a mongodb database matching models.py
 
 #database - seedvault
 #connection string - 
+
+#for npm:
+     #recharts
+     #axios

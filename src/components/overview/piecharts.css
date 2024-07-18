@@ -1,0 +1,19 @@
+.pie-charts {
+  display: flex;
+  justify-content: space-around;
+  padding: 20px;
+}
+
+.pie-chart-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.pie-chart-container h3 {
+  margin-bottom: 10px;
+}
+
+.pie-chart-container p {
+  color: red;
+}

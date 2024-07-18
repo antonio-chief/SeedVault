@@ -1,0 +1,67 @@
+.monitoring-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.monitoring-card {
+  display: flex;
+  flex-direction: row;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background-color: #f9f9f9;
+}
+
+.image-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.image-section img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.image-section input {
+  margin-top: 10px;
+}
+
+.analytics-section {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 20px;
+}
+
+.analytics-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.analytics-item span {
+  margin-right: 5px;
+}
+
+.details-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 20px;
+}
+
+.details-section p {
+  margin: 5px 0;
+}
+
+.no-data {
+  text-align: center;
+  padding: 20px;
+}

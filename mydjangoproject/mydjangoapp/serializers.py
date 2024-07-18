@@ -72,3 +72,38 @@ class WeatherSerializer(serializers.ModelSerializer):
     class Meta:
         model = Weather
         fields = '__all__'
+
+
+
+class WorkerSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Worker
+        fields = ['WorkerID', 'Name', 'AssignedPlace', 'Image']
+
+class RestrictedAreaSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = RestrictedArea
+        fields = ['AreaName', 'Reason']
+
+class SecurityBreachSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = SecurityBreach
+        fields = ['BreachID', 'Date', 'Time', 'Description']
+
+class EquipmentStatusSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = EquipmentStatus
+        fields = ['EquipmentID', 'Status', 'LastUpdated']
+
+
+
+
+class TotalsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Totals
+        fields = '__all__'
+
+class StorageFacilitiesSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = StorageFacilities
+        fields = '__all__'

@@ -4,6 +4,16 @@ from django.utils import timezone
 
 #UserSeedCatalog
 class mydjangoapp_seeds(models.Model):
+
+    CATEGORIES = [
+        ('seed', 'Seed'),
+        ('germplasm', 'Germplasm'),
+    ]
+    TYPES = [
+        ('herb', 'Herb'),
+        ('other', 'Other'),
+    ]
+
     SeedID = models.CharField(max_length=100)
     SeedCategory = models.CharField(max_length=255)
     SeedType = models.CharField(max_length=255)
@@ -238,3 +248,63 @@ class Weather(models.Model):
 
     def __str__(self):
         return self.WeatherToday
+
+
+
+
+#models to add: workers, equipment_status, 
+
+
+class Worker(models.Model):
+    WorkerID = models.CharField(max_length=50)
+    Name = models.CharField(max_length=100)
+    AssignedPlace = models.CharField(max_length=255)
+    Image = models.ImageField(upload_to='worker_images/', blank=True, null=True)
+
+    def __str__(self):
+        return self.Name
+
+class RestrictedArea(models.Model):
+    AreaName = models.CharField(max_length=100)
+    Reason = models.TextField()
+
+    def __str__(self):
+        return self.AreaName
+
+class SecurityBreach(models.Model):
+    BreachID = models.CharField(max_length=50)
+    Date = models.DateField()
+    Time = models.TimeField()
+    Description = models.TextField()
+
+    def __str__(self):
+        return self.BreachID
+
+class EquipmentStatus(models.Model):
+    EquipmentID = models.CharField(max_length=50)
+    Status = models.CharField(max_length=100)
+    LastUpdated = models.DateTimeField()
+
+    def __str__(self):
+        return self.EquipmentID
+
+
+
+
+class Totals(models.Model):
+    planted = models.IntegerField(default=0)
+    in_inventory = models.IntegerField(default=0)
+    older = models.IntegerField(default=0)
+    newer = models.IntegerField(default=0)
+
+    def __str__(self):
+        return "Totals"
+
+class StorageFacilities(models.Model):
+    used = models.IntegerField(default=0)
+    free = models.IntegerField(default=0)
+
+    def __str__(self):
+        return "StorageFacilities"
+
+ 
