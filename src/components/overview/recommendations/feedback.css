@@ -1,0 +1,41 @@
+.feedback-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+  }
+  
+  .feedback-card, .feedback-history-card, .recommendations-card {
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 5px;
+  }
+  
+  .feedback-card textarea {
+    width: 100%;
+    height: 100px;
+    margin-bottom: 10px;
+  }
+  
+  .feedback-card button {
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .feedback-history-card, .recommendations-card {
+    margin-top: 20px;
+  }
+  
+  .feedback-item, .recommendation-item {
+    margin-bottom: 10px;
+  }
+  
+  .error-message {
+    color: red;
+    margin-top: 20px;
+  }
+  

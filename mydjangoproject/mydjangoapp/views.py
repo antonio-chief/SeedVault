@@ -4,6 +4,9 @@ from rest_framework import viewsets
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
+from django.contrib.auth import authenticate, login
+from django.http import JsonResponse
+from django.contrib.auth.models import User
 from .models import *
 from .serializers import *
 
@@ -60,6 +63,8 @@ class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
 
+    
+
 class WeatherViewSet(viewsets.ModelViewSet):
     queryset = Weather.objects.all()
     serializer_class = WeatherSerializer
@@ -92,6 +97,27 @@ class TotalsViewSet(viewsets.ModelViewSet):
 class StorageFacilitiesViewSet(viewsets.ModelViewSet):
     queryset = StorageFacilities.objects.all()
     serializer_class = StorageFacilitiesSerializer
+
+
+
+class AdminRecommendationsViewSet(viewsets.ModelViewSet):
+    queryset = AdminRecommendations.objects.all()
+    serializer_class = AdminRecommendationsSerializer
+
+    def list(self, request):
+        seed_name = request.query_params.get('seed_name', None)
+        text_snippet = request.query_params.get('text_snippet', None)
+
+        if seed_name:
+            queryset = self.queryset.filter(seed_name__icontains=seed_name)
+        elif text_snippet:
+            queryset = self.queryset.filter(recommendation__icontains=text_snippet)
+        else:
+            queryset = self.queryset
+
+        serializer = self.get_serializer(queryset, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
 
 class SeedAPIView(APIView):
     def get(self, request):
@@ -340,6 +366,29 @@ class StorageFacilitiesAPIView(APIView):
 
     def post(self, request):
         serializer = StorageFacilitiesSerializer(data=request.data)
+        if serializer.is_valid(raise_exception=True):
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+
+class RecommendationsAPIView(APIView):
+    def get(self, request):
+        seed_name = request.query_params.get('seed_name', None)
+        text_snippet = request.query_params.get('text_snippet', None)
+
+        if seed_name:
+            recommendations = AdminRecommendations.objects.filter(seed_name__icontains=seed_name)
+        elif text_snippet:
+            recommendations = AdminRecommendations.objects.filter(recommendation__icontains=text_snippet)
+        else:
+            return Response({'error': 'No search criteria provided'}, status=status.HTTP_400_BAD_REQUEST)
+
+        serializer = AdminRecommendationsSerializer(recommendations, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+    def post(self, request):
+        serializer = AdminRecommendationsSerializer(data=request.data)
         if serializer.is_valid(raise_exception=True):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)

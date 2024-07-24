@@ -9,7 +9,7 @@ const Database = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('http://127.0.0.1:8002/seeds/');
+        const response = await axios.get('http://127.0.0.1:8001/seeds/');
         setSeedsData(response.data);
       } catch (error) {
         setError('Failed to fetch data. Please try again later.');

@@ -4,11 +4,7 @@ from django.contrib import admin
 # mydjangoapp/admin.py
 
 
-from .models import (
-    mydjangoapp_seeds, Monitoring, AdminFeedback, AdminSeedCatalog, AdminSubscription,
-    DampnessAnalytics, Events, LightExposureAnalytics, Security, Storage,
-    TemperatureAnalytics, User, Weather
-)
+from .models import *
 
 admin.site.register(mydjangoapp_seeds)
 admin.site.register(Monitoring)
@@ -23,3 +19,10 @@ admin.site.register(Storage)
 admin.site.register(TemperatureAnalytics)
 admin.site.register(User)
 admin.site.register(Weather)
+admin.site.register(Worker)
+admin.site.register(RestrictedArea)
+admin.site.register(SecurityBreach)
+admin.site.register(EquipmentStatus)
+admin.site.register(Totals)
+admin.site.register(StorageFacilities)
+admin.site.register(AdminRecommendations)

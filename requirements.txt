@@ -1,3 +1,4 @@
+#pip install... :
 asgiref==3.8.1
 Django==4.1.13
 django-cors-headers==4.4.0
@@ -11,11 +12,14 @@ typing_extensions==4.12.1
 #pillow
 
 
-#create a mongodb database matching models.py
 
-#database - seedvault
-#connection string - 
 
-#for npm:
+#for npm, npm install... :
      #recharts
      #axios
+     #useState
+     #useEffect
+     #express
+     #useRef
+     #component?
+     #concurrently --save-dev

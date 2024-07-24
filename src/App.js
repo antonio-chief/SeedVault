@@ -1,4 +1,4 @@
-// frontend/src/App.js
+//src/App.js
 import React, { Component } from 'react';
 import Sidebar from './components/Sidebar';
 import Overview from './components/Overview';

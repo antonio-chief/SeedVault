@@ -32,10 +32,11 @@
   }
   
   .add-worker,
-  .add-restricted-area {
+  .add-restricted-area {  /*add worker and restricted area sections */
     display: flex;
-    justify-content: center;
+    justify-content: baseline;
     margin-bottom: 20px;
+    min-width: fit-content;
   }
   
   .add-worker input,

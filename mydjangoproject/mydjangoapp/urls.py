@@ -17,12 +17,13 @@ router.register(r'storage', StorageViewSet, basename='storage')
 router.register(r'temperature-analytics', TemperatureAnalyticsViewSet, basename='temperature-analytics')
 router.register(r'user', UserViewSet, basename='user')
 router.register(r'weather', WeatherViewSet, basename='weather')
-router.register(r'worker-viewset', WorkerViewSet)
-router.register(r'restricted-area-viewset', RestrictedAreaViewSet)
-router.register(r'security-breach-viewset', SecurityBreachViewSet)
-router.register(r'equipment-status-viewset', EquipmentStatusViewSet)
-router.register(r'totals-viewset', TotalsViewSet)
-router.register(r'storagefacilities-viewset', StorageFacilitiesViewSet)
+router.register(r'worker', WorkerViewSet)
+router.register(r'restricted-area', RestrictedAreaViewSet)
+router.register(r'security-breach', SecurityBreachViewSet)
+router.register(r'equipment-status', EquipmentStatusViewSet)
+router.register(r'totals', TotalsViewSet)
+router.register(r'storagefacilities', StorageFacilitiesViewSet)
+router.register(r'recommendations', AdminRecommendationsViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),  # Include router URLs under 'api/' prefix
@@ -47,4 +48,5 @@ urlpatterns = [
     path('equipment_status/', EquipmentStatusAPIView.as_view(), name='equipment_status'),
     path('totals/', TotalsAPIView.as_view(), name='totals'),
     path('storagefacilities/', StorageFacilitiesAPIView.as_view(), name='storagefacilities'),
+    path('recommendations/', RecommendationsAPIView.as_view(), name='recommendations-api'),
 ]

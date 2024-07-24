@@ -13,7 +13,7 @@ const Reports = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('http://127.0.0.1:8002/monitoring/');//TODO: Change port according to your django default
+        const response = await axios.get('http://127.0.0.1:8001/monitoring/');//TODO: Change port according to your django default
         return response.data;
       } catch (error) {
         console.error("Error fetching monitoring data:", error);

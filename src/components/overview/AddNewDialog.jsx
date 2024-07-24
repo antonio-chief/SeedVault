@@ -30,9 +30,9 @@ const AddNewDialog = ({ type, onClose }) => {
   const handleSubmit = async () => {
     try {
       if (type === 'storageFacility') {
-        await axios.post('/api/storagefacilities/', facilityData);
+        await axios.post('http://127.0.0.1:8000/storagefacilities/', facilityData);
       } else if (type === 'seed') {
-        await axios.post('/api/seeds/', seedData);
+        await axios.post('http://127.0.0.1:8000/seeds/', seedData);
       }
       onClose();
     } catch (error) {

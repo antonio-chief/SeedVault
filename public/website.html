@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- Basic -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <!-- Mobile Metas -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <!-- Site Metas -->
+  <link rel="icon" href="images/fevicon.png" type="image/gif" />
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+
+  <title>Seed vault</title>
+
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+  </style>
+
+
+  <!-- bootstrap core css -->
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+
+  <!-- fonts style -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+
+  <!-- font awesome style -->
+  <link href="css/font-awesome.min.css" rel="stylesheet" />
+
+  <!-- Custom styles for this template -->
+  <link href="css/style.css" rel="stylesheet" />
+  <!-- responsive style -->
+  <link href="css/responsive.css" rel="stylesheet" />
+
+   <!-- video style -->
+   <link href="css/video.css" rel="stylesheet" />
+
+   <!-- searchbar style -->
+   <link href="css/searchbar.css" rel="stylesheet" />
+
+</head>
+
+<body>
+
+  <div class="hero_area">
+    <!-- header section strats -->
+    <header class="header_section">
+      <div class="container-fluid">
+        <nav class="navbar navbar-expand-lg custom_nav-container ">
+          <a class="navbar-brand" href="website.html">
+            <span>Seed vault</span>
+          </a>
+
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class=""> </span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav  ml-auto">
+              <li class="nav-item active">
+                <a class="nav-link" href="#home">Home <span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#about"> About</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#services">Services</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#pillars">Pillars</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#info">Contact Us</a>
+              </li>
+              <li class="nav-item"><!--TODO: Add login.html here-->
+                <a class="nav-link" href="login.html" >Login</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="login.html" >Sign Up</a>
+            </li>
+            </ul>
+          
+            <div class="quote_btn-container">
+              <button class="btn nav_search-btn" type="button" id="searchToggleBtn">
+                  <i class="fa fa-search" aria-hidden="true"></i>
+              </button>
+              <form class="form-inline" id="searchForm" onsubmit="performSearch(event)" style="display: none;">
+                  <input type="text" id="searchQuery" class="form-control" placeholder="Search...">
+                  <!--<button class="btn nav_search-btn" type="submit">
+                      <i class="fa fa-search" aria-hidden="true"></i>
+                  </button>-->
+              </form>
+          </div>
+          
+
+          </div>
+        </nav>
+      </div>
+    </header>
+    <!-- end header section -->
+    <!-- slider section -->
+    <section id="home" class="slider_section ">
+      <div id="customCarousel1" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <div class="container ">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="detail-box">
+                    <h1>
+                      A smart storage solution for seeds and germplasms
+                    </h1>
+                    <p>
+                      We offer intelligent storage solutions to optimise the conditions for seeds and germplasm storage </p>
+                    <div class="btn-box">
+                      <a href="#about" class="btn-1">
+                        Read More
+                      </a>
+                      <a href="login.html" class="btn-2">
+                        Get Started
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="row">
+                    <div class=" col-lg-10 mx-auto">
+                      <div class="img-box">
+                        <img src="images/c766e7e0.jpg" alt="">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <div class="container ">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="detail-box">
+                    <h1>
+                      Our Mission
+                    </h1>
+                    <p>
+                      Our mission is to revolutionize seed storage through innovative technology. We are committed to providing sustainable solutions that ensure the preservation and accessibility of genetic resources for future generations. </p>
+                    <div class="btn-box">
+                      <a href="#about" class="btn-1">
+                        Read More
+                      </a>
+                      <a href="#info" class="btn-2">
+                        Contact us
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="row">
+                    <div class=" col-lg-10 mx-auto">
+                      <div class="img-box">
+                        <img src="images/98201e77.jpg" alt="">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <div class="container ">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="detail-box">
+                    <h1>
+                      Our Vision
+                    </h1>
+                    <p>
+                      We envision a world where the genetic diversity of crops is preserved and accessible to everyone. Our goal is to be the leading provider of seed storage solutions that support agricultural sustainability. </p>
+                    <div class="btn-box">
+                      <a href="#about" class="btn-1">
+                        Read More
+                      </a>
+                      <a href="login.html" class="btn-2">
+                        Sign Up
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="row">
+                    <div class=" col-lg-10 mx-auto">
+                      <div class="img-box">
+                        <img src="images/eb2bde39.jpg" alt="">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+        <div class="carousel_btn-box">
+          <a class="carousel-control-prev" href="#customCarousel1" role="button" data-slide="prev">
+            <i class="fa fa-angle-left" aria-hidden="true"></i>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="carousel-control-next" href="#customCarousel1" role="button" data-slide="next">
+            <i class="fa fa-angle-right" aria-hidden="true"></i>
+            <span class="sr-only">Next</span>
+          </a>
+        </div>
+      </div>
+    </section>
+    <!-- end slider section -->
+  </div>
+
+  <!-- Login Modal -->
+<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title" id="loginModalLabel">Login</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+              </button>
+          </div>
+          <div class="modal-body">
+              <form id="loginForm">
+                  <div class="form-group">
+                      <label for="loginEmail">Email address</label>
+                      <input type="email" class="form-control" id="loginEmail" required>
+                  </div>
+                  <div class="form-group">
+                      <label for="loginPassword">Password</label>
+                      <input type="password" class="form-control" id="loginPassword" required>
+                  </div>
+                  <button type="submit" class="btn btn-primary">Login</button>
+              </form>
+          </div>
+      </div>
+  </div>
+</div>
+
+<!-- Signup Modal -->
+<div class="modal fade" id="signupModal" tabindex="-1" role="dialog" aria-labelledby="signupModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title" id="signupModalLabel">Sign Up</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+              </button>
+          </div>
+          <div class="modal-body">
+              <form id="signupForm">
+                  <div class="form-group">
+                      <label for="signupEmail">Email address</label>
+                      <input type="email" class="form-control" id="signupEmail" required>
+                  </div>
+                  <div class="form-group">
+                      <label for="signupPassword">Password</label>
+                      <input type="password" class="form-control" id="signupPassword" required>
+                  </div>
+                  <button type="submit" class="btn btn-primary">Sign Up</button>
+              </form>
+          </div>
+      </div>
+  </div>
+</div>
+
+  <!-- service section -->
+
+  <section id="services" class="service_section layout_padding">
+    <div class="container">
+      <div class="heading_container heading_center">
+        <h2>
+          Our Services
+        </h2>
+      </div>
+    </div>
+    <div class="container ">
+      <div class="row">
+        <div class="col-md-6 col-lg-4">
+          <div class="box ">
+            <div class="img-box">
+              <img src="images/temp.png" alt="">
+            </div>
+            <div class="detail-box">
+              <h4>
+                Temperature Control
+              </h4>
+              <p>
+                Our system allows precise temperature control to mimic natural seed storage conditions, ensuring optimal preservation.
+              </p>
+
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <div class="box ">
+            <div class="img-box">
+              <img src="images/s2.png" alt="">
+            </div>
+            <div class="detail-box">
+              <h4>
+                Data Analytics
+              </h4>
+              <p>
+                Gain valuable insights into seed viability and storage conditions through comprehensive data analytics.
+              </p>
+
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4 ">
+          <div class="box ">
+            <div class="img-box">
+              <img src="images/monitor.png" alt="">
+            </div>
+            <div class="detail-box">
+              <h4>
+                Remote Monitoring
+              </h4>
+              <p>
+                Monitor and manage your seed storage facility remotely, giving you peace of mind and flexibility.
+              </p>
+
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <div class="box ">
+            <div class="img-box">
+              <img src="images/alert.png" alt="">
+            </div>
+            <div class="detail-box">
+              <h4>
+                Alert System
+              </h4>
+              <p>
+                Instant alerts notify personnel of security breaches or environmental changes.
+              </p>
+
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <div class="box ">
+            <div class="img-box">
+              <img src="images/s5.png" alt="">
+            </div>
+            <div class="detail-box">
+              <h4>
+                Predictive Analytics
+              </h4>
+              <p>
+                Forecasts maintenance needs based on recorded data.
+              </p>
+
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <div class="box ">
+            <div class="img-box">
+              <img src="images/s6.png" alt="">
+            </div>
+            <div class="detail-box">
+              <h4>
+                Networking Platform
+              </h4>
+              <p>
+                Connects users for knowledge exchange and collaboration.
+              </p>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- end service section -->
+
+  <!-- about section -->
+
+  <section id="about" class="about_section layout_padding-bottom">
+    <div class="container  ">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="detail-box">
+            <div class="heading_container">
+              <h2>
+                About Us
+              </h2>
+            </div>
+            <p>
+              Welcome to Seed Vault, the premier solution for smart seed and germplasm storage. We are dedicated to revolutionizing the way seeds are stored and managed, ensuring their longevity and viability for future generations. Our mission is to provide a smart, efficient, and secure way to store and manage your seeds, utilizing cutting-edge technology to maintain optimal environmental conditions.
+
+              <br>At Seed Vault, we understand the critical importance of preserving genetic resources. Seeds are the foundation of our food systems, biodiversity, and agricultural sustainability. Our advanced storage solutions are designed to mimic natural seed storage conditions, offering precise control over temperature, humidity, and other environmental factors. This ensures that the seeds remain viable and healthy, ready to germinate when needed. </p>
+          </div>
+        </div>
+        <div class="col-md-6 ">
+          <div class="img-box">
+            <img src="images/9a6e388d.jpg" alt="">
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- end about section -->
+
+
+  <!-- solution section -->
+
+
+<section class="server_section">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="img-box">
+          <video id="video1" src="videos/video1.mp4" alt=""></video>
+          <div class="play_btn">
+            <button onclick="playVideo('video1')">
+              <i class="fa fa-play" aria-hidden="true"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="detail-box">
+          <div class="heading_container">
+            <h2>Let us manage your harvest</h2>
+            <p>
+              Seed Vault is your ultimate solution for smart seed and germplasm storage. Our cutting-edge technology ensures the preservation and accessibility of genetic resources for future generations. Join us in our mission to revolutionize seed storage with innovative, sustainable solutions.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  function playVideo(videoId) {
+    const video = document.getElementById(videoId);
+    if (video.paused) {
+      video.play();
+    } else {
+      video.pause();
+    }
+  }
+</script>
+
+  <!-- end solution section -->
+
+<!-- pillars section -->
+<section id="pillars" class="price_section layout_padding">
+  <div class="container">
+    <div class="heading_container heading_center">
+      <h2>
+        Key Pillars
+      </h2>
+    </div>
+    <div class="price_container ">
+      <div class="box">
+        <div class="detail-box">
+          <h2>1</h2>
+          <h6>
+            Environmental Control
+          </h6>
+          <p>
+            Proper temperature, humidity, and light control are crucial to maintaining seed viability and preventing deterioration.
+          </p>
+        </div>
+      </div>
+      <div class="box">
+        <div class="detail-box">
+          <h2>2</h2>
+          <h6>
+            Monitoring and Data Management
+          </h6>
+          <p>
+            Use of technology for real-time monitoring, data logging, and automated alerts ensures optimal storage conditions are consistently maintained.
+          </p>
+        </div>
+      </div>
+      <div class="box">
+        <div class="detail-box">
+          <h2>3</h2>
+          <h6>
+            Packaging and Handling
+          </h6>
+          <p>
+            Sealed and durable packaging, proper labeling, and gentle handling minimize physical damage and maintain seed quality over time.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- pillars section -->
+
+
+<!-- team section -->
+<section class="team_section">
+  <style>
+    .team_member {
+      text-align: center; /* Center aligns all content within the team member box */
+      margin-bottom: 20px; /* Add space between team members */
+    }
+    .team_member .img-box {
+      width: 100%;
+      max-width: 200px; /* Adjust width as needed */
+      height: 200px; /* Adjust height as needed */
+      margin: 0 auto; /* Centering the image box */
+      overflow: hidden; /* Ensure any overflow is hidden */
+    }
+    .team_member .img-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover; /* Ensures the image covers the specified dimensions */
+    }
+    .team_member .detail-box {
+      margin-top: 10px; /* Add space between the image and the details */
+    }
+  </style>
+  <div class="container">
+    <div class="heading_container heading_center">
+      <h2>
+        Our Team
+      </h2>
+    </div>
+    <div class="row">
+      <div class="col-md-3 col-sm-6">
+        <div class="team_member">
+          <div class="img-box">
+            <a href="https://www.linkedin.com/in/daniel-wekesa-1137a6266/"><img src="images/21679bbc.jpg" alt="Team Member 1"></a>
+          </div>
+          <div class="detail-box">
+            <h5>Daniel Wekesa</h5>
+            <h6>Full-Stack Developer</h6>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 col-sm-6">
+        <div class="team_member">
+          <div class="img-box">
+            <a href="https://www.upwork.com/nx/find-work/best-matches"><img src="images/4e842da3.jpg" alt="Team Member 2"></a>
+          </div>
+          <div class="detail-box">
+            <h5>Arnold Mcharia</h5>
+            <h6>Backend Developer</h6>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 col-sm-6">
+        <div class="team_member">
+          <div class="img-box">
+            <a href="https://www.linkedin.com/in/stephen-njoroge-4492a9311/"><img src="images/45031688.jpg" alt="Team Member 3"></a>
+          </div>
+          <div class="detail-box">
+            <h5>Stephen Kariuki</h5>
+            <h6>Backend Developer</h6>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 col-sm-6">
+        <div class="team_member">
+          <div class="img-box">
+            <a href="https://www.linkedin.com/in/antony-omondi-a1b943272?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"><img src="images/58b6f6ba.jpg" alt="Team Member 4"></a>
+          </div>
+          <div class="detail-box">
+            <h5>Antony Omondi</h5>
+            <h6>UI/UX Designer</h6>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 col-sm-6">
+        <div class="team_member">
+          <div class="img-box">
+            <a href="https://www.linkedin.com/in/samuel-mutunga-034b7a1b7?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"><img src="images/profile.photo.jpeg" alt="Team Member 5"></a>
+          </div>
+          <div class="detail-box">
+            <h5>Samuel Mutunga</h5></a>
+            <h6>Frontend Developer</h6>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- end team section -->
+
+
+
+<!-- info section -->
+
+<section id="info" class="info_section layout_padding2">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-3">
+        <div class="info_contact">
+          <h4>
+            Address
+          </h4>
+          <div class="contact_link_box">
+            <a href="#info">
+              <i class="fa fa-map-marker" aria-hidden="true"></i>
+              <span>
+                Juja
+              </span>
+            </a>
+            <a href="#info">
+              <i class="fa fa-phone" aria-hidden="true"></i>
+              <span>
+                Call 0742748537
+              </span>
+            </a>
+            <a href="#info">
+              <i class="fa fa-envelope" aria-hidden="true"></i>
+              <span>
+                danielwekesakakai@gmail.com
+              </span>
+            </a>
+          </div>
+        </div>
+        <div class="info_social">
+          <!--<a href="https://www.facebook.com">
+            <i class="fa fa-facebook" aria-hidden="true"></i>
+          </a>-->
+          <a href="https:www.twitter.com/chief_antonio">
+            <i class="fa fa-twitter" aria-hidden="true"></i>
+          </a>
+          <a href="https://www.linkedin.com/in/stephen-njoroge-4492a9311/">
+            <i class="fa fa-linkedin" aria-hidden="true"></i>
+          </a>
+          <!--<a href="https://www.instagram.com/__undecided.teen/">
+            <i class="fa fa-instagram" aria-hidden="true"></i>
+          </a>-->
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="info_link_box">
+          <h4>
+            Links
+          </h4>
+          <div class="info_links">
+            <a class="" href="website.html">
+              <img src="images/nav-bullet.png" alt="">
+              Home
+            </a>
+            <a class="" href="#about">
+              <img src="images/nav-bullet.png" alt="">
+              About
+            </a>
+            <a class="" href="#services">
+              <img src="images/nav-bullet.png" alt="">
+              Services
+            </a>
+            <a class="" href="#pillars">
+              <img src="images/nav-bullet.png" alt="">
+              Pillars
+            </a>
+            <a class="" href="#info">
+              <img src="images/nav-bullet.png" alt="">
+              Contact Us
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="info_detail">
+          <h4>
+            Info
+          </h4>
+          <p>
+            Our team comprises upcoming experts in technology. We work collaboratively to develop innovative solutions that address the challenges of seed preservation.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- end info section -->
+
+  <!-- footer section -->
+  <footer class="footer_section">
+    <div class="container">
+      <p>
+        <!--&copy; <span id="displayYear"></span> All Rights Reserved-->
+      </p>
+    </div>
+  </footer>
+  <!-- footer section -->
+
+  <!-- jQery -->
+  <script src="js/jquery-3.4.1.min.js"></script>
+  <!-- bootstrap js -->
+  <script src="js/bootstrap.js"></script>
+  <!-- custom js -->
+  <script src="js/custom.js"></script>
+
+  <!-- searchbar js -->
+  <script src="js/searchbar.js"></script>
+
+  <!-- Login and Signup handling script -->
+
+
+</body>
+
+</html>

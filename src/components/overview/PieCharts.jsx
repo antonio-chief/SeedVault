@@ -3,7 +3,7 @@ import { PieChart, Pie, Cell, Tooltip, Legend } from 'recharts';
 import axios from 'axios';
 import './piecharts.css';
 
-const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
+const COLORS = ['#4CAF50', '#FF5722', '#FFC107', '#03A9F4'];
 
 const PieCharts = () => {
   const [seedsData, setSeedsData] = useState(null);
@@ -13,10 +13,8 @@ const PieCharts = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // Fetch totals data
-        const totalsResponse = await axios.get('http://127.0.0.1:8002/totals/');
-        // Fetch storage facilities data
-        const storageResponse = await axios.get('http://127.0.0.1:8002/storagefacilities/');
+        const totalsResponse = await axios.get('http://127.0.0.1:8001/totals/');
+        const storageResponse = await axios.get('http://127.0.0.1:8001/storagefacilities/');
         
         setSeedsData(totalsResponse.data);
         setStorageData(storageResponse.data);
@@ -28,7 +26,6 @@ const PieCharts = () => {
     fetchData();
   }, []);
 
-  // Prepare data for pie charts
   const seedsPieData = seedsData ? [
     { name: 'Planted', value: seedsData.planted },
     { name: 'In Inventory', value: seedsData.in_inventory }
@@ -44,7 +41,6 @@ const PieCharts = () => {
     { name: 'Newer Seeds', value: seedsData.newer }
   ] : [];
 
-  // Function to render Pie Chart
   const renderPieChart = (data, title) => (
     <div className="pie-chart-container">
       <h3>{title}</h3>

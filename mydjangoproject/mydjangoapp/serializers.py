@@ -107,3 +107,9 @@ class StorageFacilitiesSerializer(serializers.ModelSerializer):
     class Meta:
         model = StorageFacilities
         fields = '__all__'
+
+
+class AdminRecommendationsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = AdminRecommendations
+        fields = '__all__'

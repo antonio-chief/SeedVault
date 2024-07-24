@@ -20,9 +20,9 @@ class mydjangoapp_seeds(models.Model):
     DateBought = models.DateTimeField(default= timezone.now)
     ExpiryDate = models.DateTimeField(default= timezone.now)
     PlantingDate = models.DateTimeField(default= timezone.now)
-    TemperatureRequirement = models.CharField(max_length=255)
-    LightRequirement = models.IntegerField()
-    MoistureRequirement = models.IntegerField()
+    TemperatureRequirement = models.FloatField()
+    LightRequirement = models.FloatField()
+    MoistureRequirement = models.FloatField()
     SeedQuantity = models.IntegerField()
 
 
@@ -69,6 +69,7 @@ class AdminAllUsers(models.Model):
 class AdminFeedback(models.Model):
     UserID = models.CharField(max_length=100)
     Feedback = models.TextField()
+    Responses = models.TextField()
     Reports = models.TextField()
 
     def __str__(self):
@@ -178,19 +179,19 @@ class Security(models.Model):
 class Storage(models.Model):
     SeedID = models.CharField(max_length=100)
     WarehouseName = models.CharField(max_length=100)
-    WarehouseNo = models.CharField(max_length=100, blank=True, null=True)
-    ShelfNo = models.CharField(max_length=100, blank=True, null=True)
-    UnitNo = models.CharField(max_length=100, blank=True, null=True)
+    WarehouseNo = models.IntegerField()
+    ShelfNo = models.IntegerField()
+    UnitNo = models.IntegerField()
     VaultName = models.CharField(max_length=100)
-    VaultNo = models.CharField(max_length=100, blank=True, null=True)
+    VaultNo = models.IntegerField()
     SeedBankName = models.CharField(max_length=100)
-    SeedBankNo = models.CharField(max_length=100, blank=True, null=True)
-    SeedCaseNo = models.CharField(max_length=100, blank=True, null=True)
-    CaseSectionNo = models.CharField(max_length=100, blank=True, null=True)
-    SeedBoxNo = models.CharField(max_length=100, blank=True, null=True)
-    BoxUnitNo = models.CharField(max_length=100, blank=True, null=True)
-    SeedAlbumNo = models.CharField(max_length=100, blank=True, null=True)
-    PageNo = models.CharField(max_length=100, blank=True, null=True)
+    SeedBankNo = models.IntegerField()
+    SeedCaseNo = models.IntegerField()
+    CaseSectionNo = models.IntegerField()
+    SeedBoxNo = models.IntegerField()
+    BoxUnitNo = models.IntegerField()
+    SeedAlbumNo = models.IntegerField()
+    PageNo = models.IntegerField()
 
     def __str__(self):
         return self.SeedID
@@ -308,3 +309,10 @@ class StorageFacilities(models.Model):
         return "StorageFacilities"
 
  
+class AdminRecommendations(models.Model):
+    seed_name = models.CharField(max_length=255)
+    text_snippet = models.TextField()
+    
+
+    def __str__(self):
+        return f'Recommendation for {self.seed_name}'

@@ -5,6 +5,7 @@ import PieCharts from './overview/PieCharts';
 import Database from './overview/Database';
 import Monitoring from './overview/monitoring/Monitoring';
 import Security from './overview/security/Security';
+import Feedback from './overview/recommendations/Feedback'
 import axios from 'axios';
 import './overview.css';
 
@@ -15,7 +16,7 @@ const Overview = () => {
   useEffect(() => {
     const fetchSeedsData = async () => {
       try {
-        const response = await axios.get('http://127.0.0.1:8002/seeds/');//TODO: change to the port to your django port
+        const response = await axios.get('http://127.0.0.1:8001/seeds/');//TODO: change to the port to your django port
         setSeeds(response.data);
       } catch (error) {
         console.error('Error fetching seeds data:', error);
@@ -75,7 +76,6 @@ const Overview = () => {
 
         {activeTab === 'security' && (
           <div>
-            <h2>Security Content</h2>
             {/* Add content for Security */}
             <Security />
           </div>
@@ -83,7 +83,6 @@ const Overview = () => {
 
         {activeTab === 'monitoring' && (
           <div>
-            <h2>Monitoring Content</h2>
             {/* Add content for Monitoring */}
             <Monitoring />
           </div>
@@ -93,6 +92,7 @@ const Overview = () => {
           <div>
             <h2>Recommendations and Feedback</h2>
             {/* Add content for Recommendations */}
+            <Feedback />
           </div>
         )}
       </div>

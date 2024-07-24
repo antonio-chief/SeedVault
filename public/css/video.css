@@ -1,0 +1,48 @@
+/* General Styles */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+  }
+  
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .col-md-6 {
+    flex: 0 0 50%;
+    max-width: 50%;
+    padding: 15px;
+  }
+  
+  .img-box {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    max-width: 100%;
+  }
+  
+  .img-box video {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  
+
+      /* Responsive Styles */
+  @media (max-width: 768px) {
+    .col-md-6 {
+      flex: 0 0 100%;
+      max-width: 100%;
+    }
+  
+    .play_btn {
+      padding: 8px 16px;
+    }
+  
+    .play_btn i {
+      font-size: 20px;
+    }
+  }
+  
