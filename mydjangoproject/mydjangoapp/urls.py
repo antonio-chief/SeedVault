@@ -24,6 +24,7 @@ router.register(r'equipment-status', EquipmentStatusViewSet)
 router.register(r'totals', TotalsViewSet)
 router.register(r'storagefacilities', StorageFacilitiesViewSet)
 router.register(r'recommendations', AdminRecommendationsViewSet)
+router.register(r'notifications', NotificationViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),  # Include router URLs under 'api/' prefix
@@ -49,4 +50,5 @@ urlpatterns = [
     path('totals/', TotalsAPIView.as_view(), name='totals'),
     path('storagefacilities/', StorageFacilitiesAPIView.as_view(), name='storagefacilities'),
     path('recommendations/', RecommendationsAPIView.as_view(), name='recommendations-api'),
+    path('notifications/', NotificationAPIView.as_view(), name='notifications-api'),
 ]

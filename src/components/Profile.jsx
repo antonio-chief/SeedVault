@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './profile.css'
+import ProfileCode from './ProfileCode'
 
 function Profile() {
 
@@ -36,22 +37,24 @@ function Profile() {
           <div>
             <h2>User</h2>
             <div className="cards">
-              
+            
             </div>
+            <ProfileCode />
           </div>
         )}
 
         {activeTab === 'account management' && (
           <div>
             <h2>Account Management</h2>
-            {/* Add content for Security */}
+            {/* Add content */}
+            
           </div>
         )}
 
         {activeTab === 'data' && (
           <div>
             <h2>All Data</h2>
-            {/* Add content for Monitoring */}
+            {/* Add content */}
           </div>
         )}
 

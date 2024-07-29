@@ -1,0 +1,52 @@
+.profile-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+  }
+  
+  .profile-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  #profilePic {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-top: 10px;
+  }
+  
+  .profile-content {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  #bio {
+    width: 100%;
+    height: 100px;
+    margin-bottom: 20px;
+  }
+  
+  .links {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  #linkInput {
+    margin-bottom: 10px;
+  }
+  
+  #linkList {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  #linkList li {
+    margin-bottom: 5px;
+  }
+  

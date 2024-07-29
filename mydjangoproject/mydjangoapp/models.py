@@ -142,6 +142,15 @@ class Events(models.Model):
 
     def __str__(self):
         return self.Event
+    
+    def check_and_create_notifications(self):
+        event_date = timezone.datetime.strptime(self.Date, '%Y-%m-%d').date()
+        today = timezone.now().date()
+        days_until_event = (event_date - today).days
+
+        if days_until_event == 2 or days_until_event == 1:
+            message = f"Event '{self.Event}' is in {days_until_event} day(s)!"
+            Notification.objects.create(event=self, message=message)
 
 # LightExposureAnalytics Model
 class LightExposureAnalytics(models.Model):
@@ -316,3 +325,15 @@ class AdminRecommendations(models.Model):
 
     def __str__(self):
         return f'Recommendation for {self.seed_name}'
+    
+
+
+
+class Notification(models.Model):
+    event = models.ForeignKey(Events, on_delete=models.CASCADE, null=True, blank=True)
+    message = models.CharField(max_length=255)
+    date_created = models.DateTimeField(auto_now_add=True)
+    sensor_data = models.JSONField(null=True, blank=True)  # Field for sensor data
+
+    def __str__(self):
+        return self.message

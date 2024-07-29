@@ -2,14 +2,15 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-  padding: 20px;
+  padding: 10px;
+  
 }
 
 .pie-chart-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 20px;
+  margin: 10px;
 }
 
 .pie-chart-container h3 {

@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './header.css';
+import Notifications from './Notifications';
 
-import bell from '../assets/icons/bell.png';
+//import bell from '../assets/icons/bell.png';
 import calendar from '../assets/icons/calendar.png';
 import user from '../assets/icons/user.png';
 
@@ -109,8 +110,9 @@ function Header() {
         </div>
       )}
       <div className="user-profile">
+        <Notifications />
         <div className="notifications">
-          <i className="fas fa-bell"><img src={bell} alt="bell icon" /></i>
+          <i className="fas fa-bell"></i>
           <i className="fas fa-calendar"><img src={calendar} alt="calendar icon" /></i>
           <i className="fas fa-cog"></i>
         </div>

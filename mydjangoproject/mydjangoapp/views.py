@@ -7,6 +7,8 @@ from rest_framework import status
 from django.contrib.auth import authenticate, login
 from django.http import JsonResponse
 from django.contrib.auth.models import User
+from rest_framework import status
+from rest_framework.decorators import action
 from .models import *
 from .serializers import *
 
@@ -118,6 +120,23 @@ class AdminRecommendationsViewSet(viewsets.ModelViewSet):
         serializer = self.get_serializer(queryset, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
+
+
+class NotificationViewSet(viewsets.ModelViewSet):
+    queryset = Notification.objects.all()
+    serializer_class = NotificationSerializer
+
+    @action(detail=True, methods=['post'])
+    def resolve(self, request, pk=None):
+        notification = self.get_object()
+        # Logic to interact with IoT devices based on notification type
+        if 'temperature' in notification.message.lower():
+            # Call to turn on the heater
+            # Example: send_command_to_device('heater', 'on')
+            pass
+        # Add logic for other types of notifications
+        notification.delete()  # Remove resolved notification
+        return Response(status=status.HTTP_204_NO_CONTENT)
 
 class SeedAPIView(APIView):
     def get(self, request):
@@ -389,6 +408,21 @@ class RecommendationsAPIView(APIView):
 
     def post(self, request):
         serializer = AdminRecommendationsSerializer(data=request.data)
+        if serializer.is_valid(raise_exception=True):
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+
+
+class NotificationAPIView(APIView):
+    def get(self, request):
+        notifications = Notification.objects.all()
+        serializer = NotificationSerializer(notifications, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+    def post(self, request):
+        serializer = NotificationSerializer(data=request.data)
         if serializer.is_valid(raise_exception=True):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)

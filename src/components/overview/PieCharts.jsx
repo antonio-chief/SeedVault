@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { PieChart, Pie, Cell, Tooltip, Legend } from 'recharts';
 import axios from 'axios';
 import './piecharts.css';
+import Events from './Events';
+import Graph from './Graph'
 
 const COLORS = ['#4CAF50', '#FF5722', '#FFC107', '#03A9F4'];
 
@@ -37,15 +39,15 @@ const PieCharts = () => {
   ] : [];
 
   const agePieData = seedsData ? [
-    { name: 'Older Seeds', value: seedsData.older },
-    { name: 'Newer Seeds', value: seedsData.newer }
+    { name: 'Older', value: seedsData.older },
+    { name: 'Newer', value: seedsData.newer }
   ] : [];
 
   const renderPieChart = (data, title) => (
     <div className="pie-chart-container">
       <h3>{title}</h3>
       {data.length > 0 ? (
-        <PieChart width={300} height={300}>
+        <PieChart width={250} height={250}>
           <Pie
             data={data}
             cx="50%"
@@ -74,11 +76,14 @@ const PieCharts = () => {
         <p>{error}</p>
       ) : (
         <>
-          {renderPieChart(seedsPieData, 'Seeds Planted vs Inventory')}
-          {renderPieChart(storagePieData, 'Storage Used vs Free')}
-          {renderPieChart(agePieData, 'Older Seeds vs Newer Seeds')}
+          {renderPieChart(seedsPieData, 'Seeds')}
+          {renderPieChart(storagePieData, 'Storage')}
+          {renderPieChart(agePieData, 'Older vs Newer Seeds')}
+          <Events />
+          <Graph />
         </>
       )}
+      
     </div>
   );
 };

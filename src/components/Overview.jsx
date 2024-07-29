@@ -64,10 +64,9 @@ const Overview = () => {
               ) : (
                 <p>No seeds data available.</p>
               )}
+              
             </div>
-            <div>
-              <PieCharts />
-            </div>
+            <PieCharts />
             <div>
               <Database />
             </div>

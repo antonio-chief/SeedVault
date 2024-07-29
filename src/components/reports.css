@@ -27,7 +27,7 @@
   
   p {
     text-align: center;
-    color: red;
+    color: rgb(25, 85, 214);
   }
   #lineChart, #doughnutChart {
     width: 400px;
@@ -45,10 +45,7 @@
     width: 45%;
   }
   
-  p {
-    text-align: center;
-    color: red;
-  }
+ 
   
   
 
