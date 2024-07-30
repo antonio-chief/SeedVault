@@ -1,0 +1,55 @@
+.user-profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.profile-header {
+    display: flex;
+    align-items: center;
+}
+
+.profile-header img {
+    cursor: pointer;
+    border-radius: 50%;
+    border: 2px solid #ccc;
+}
+
+.username-container {
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+}
+
+.dropdown-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    margin-left: 5px;
+}
+
+.dropdown-menu {
+    position: absolute;
+    background: #fff;
+    border: 1px solid #ddd;
+    padding: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    z-index: 1000;
+}
+
+.dropdown-menu button {
+    display: block;
+    width: 100%;
+    margin-bottom: 5px;
+}
+
+.update-username,
+.update-password {
+    margin-top: 10px;
+}
+
+.update-username input,
+.update-password input {
+    margin-right: 10px;
+}

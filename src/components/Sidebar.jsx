@@ -13,20 +13,7 @@ function Sidebar({ onMenuClick, activeSection }) {
           >
             Dashboard
           </li>
-          <li
-            onClick={() => onMenuClick('storage')}
-            className={activeSection === 'storage' ? 'active' : ''}
-            id="storageBtn"
-          >
-            Storage
-          </li>
-          <li
-            onClick={() => onMenuClick('reports')}
-            className={activeSection === 'reports' ? 'active' : ''}
-            id="reportsBtn"
-          >
-            Analytics
-          </li>
+        
           <li
             onClick={() => onMenuClick('settings')}
             className={activeSection === 'settings' ? 'active' : ''}
@@ -34,13 +21,7 @@ function Sidebar({ onMenuClick, activeSection }) {
           >
             Settings
           </li>
-          <li
-            onClick={() => onMenuClick('profile')}
-            className={activeSection === 'profile' ? 'active' : ''}
-            id="profileBtn"
-          >
-            Profile
-          </li>
+          
         </ul>
       </nav>
       <nav className="footer-menu">

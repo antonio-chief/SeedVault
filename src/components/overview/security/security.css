@@ -17,7 +17,7 @@
   }
   
   button {
-    background-color: #4CAF50;
+    background-color: #03a7d3;
     color: white;
     padding: 10px 20px;
     margin: 10px 0;
@@ -28,7 +28,7 @@
   }
   
   button:hover {
-    background-color: #45a049;
+    background-color: #0056b3;
   }
   
   .add-worker,

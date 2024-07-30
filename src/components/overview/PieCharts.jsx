@@ -1,89 +1,118 @@
 import React, { useEffect, useState } from 'react';
-import { PieChart, Pie, Cell, Tooltip, Legend } from 'recharts';
 import axios from 'axios';
+import { PieChart, Pie, Cell, Tooltip, Legend } from 'recharts';
 import './piecharts.css';
-import Events from './Events';
-import Graph from './Graph'
-
-const COLORS = ['#4CAF50', '#FF5722', '#FFC107', '#03A9F4'];
 
 const PieCharts = () => {
-  const [seedsData, setSeedsData] = useState(null);
-  const [storageData, setStorageData] = useState(null);
-  const [error, setError] = useState('');
+  const [data, setData] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const totalsResponse = await axios.get('http://127.0.0.1:8001/totals/');
-        const storageResponse = await axios.get('http://127.0.0.1:8001/storagefacilities/');
-        
-        setSeedsData(totalsResponse.data);
-        setStorageData(storageResponse.data);
+        const response = await axios.get('http://127.0.0.1:8001/seeds/'); // Adjust URL as needed
+        setData(response.data);
       } catch (error) {
-        setError('Failed to fetch data. Please try again later.');
+        console.error('Error fetching seeds data:', error);
       }
     };
 
     fetchData();
   }, []);
 
-  const seedsPieData = seedsData ? [
-    { name: 'Planted', value: seedsData.planted },
-    { name: 'In Inventory', value: seedsData.in_inventory }
-  ] : [];
+  const seedsData = data.map(item => ({
+    name: item.seedType,
+    value: item.quantity,
+  }));
 
-  const storagePieData = storageData ? [
-    { name: 'Used', value: storageData.used },
-    { name: 'Free', value: storageData.free }
-  ] : [];
+  const storageData = data.map(item => ({
+    name: item.storageType,
+    value: item.storageQuantity,
+  }));
 
-  const agePieData = seedsData ? [
-    { name: 'Older', value: seedsData.older },
-    { name: 'Newer', value: seedsData.newer }
-  ] : [];
+  const ageData = data.map(item => ({
+    name: item.ageGroup,
+    value: item.ageQuantity,
+  }));
 
-  const renderPieChart = (data, title) => (
-    <div className="pie-chart-container">
-      <h3>{title}</h3>
-      {data.length > 0 ? (
-        <PieChart width={250} height={250}>
-          <Pie
-            data={data}
-            cx="50%"
-            cy="50%"
-            outerRadius={120}
-            fill="#8884d8"
-            dataKey="value"
-            label
-          >
-            {data.map((entry, index) => (
-              <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-            ))}
-          </Pie>
-          <Tooltip />
-          <Legend />
-        </PieChart>
-      ) : (
-        <p>No data available</p>
-      )}
-    </div>
-  );
+  const COLORS = ['#00C49F', '#FFBB28', '#FF8042']; // Adjust colors as needed
 
   return (
     <div className="pie-charts">
-      {error ? (
-        <p>{error}</p>
-      ) : (
-        <>
-          {renderPieChart(seedsPieData, 'Seeds')}
-          {renderPieChart(storagePieData, 'Storage')}
-          {renderPieChart(agePieData, 'Older vs Newer Seeds')}
-          <Events />
-          <Graph />
-        </>
-      )}
-      
+      <div className="chart-container">
+        <h2>Seed Distribution</h2>
+        {data.length === 0 ? (
+          <p>No seed data available</p>
+        ) : (
+          <PieChart width={400} height={400}>
+            <Pie
+              data={seedsData}
+              dataKey="value"
+              nameKey="name"
+              cx="50%"
+              cy="50%"
+              outerRadius={150}
+              fill="#8884d8"
+              label
+            >
+              {seedsData.map((entry, index) => (
+                <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+              ))}
+            </Pie>
+            <Tooltip />
+            <Legend />
+          </PieChart>
+        )}
+      </div>
+      <div className="chart-container">
+        <h2>Storage Distribution</h2>
+        {data.length === 0 ? (
+          <p>No storage data available</p>
+        ) : (
+          <PieChart width={400} height={400}>
+            <Pie
+              data={storageData}
+              dataKey="value"
+              nameKey="name"
+              cx="50%"
+              cy="50%"
+              outerRadius={150}
+              fill="#8884d8"
+              label
+            >
+              {storageData.map((entry, index) => (
+                <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+              ))}
+            </Pie>
+            <Tooltip />
+            <Legend />
+          </PieChart>
+        )}
+      </div>
+      <div className="chart-container">
+        <h2>Age Distribution</h2>
+        {data.length === 0 ? (
+          <p>No age data available</p>
+        ) : (
+          <PieChart width={400} height={400}>
+            <Pie
+              data={ageData}
+              dataKey="value"
+              nameKey="name"
+              cx="50%"
+              cy="50%"
+              outerRadius={150}
+              fill="#8884d8"
+              label
+            >
+              {ageData.map((entry, index) => (
+                <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+              ))}
+            </Pie>
+            <Tooltip />
+            <Legend />
+          </PieChart>
+        )}
+      </div>
     </div>
   );
 };

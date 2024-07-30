@@ -1,0 +1,28 @@
+.graph-component {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.dropdown {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.chart {
+  width: 100%;
+  max-width: 800px;
+  height: 400px;
+}
+
+.range-input {
+  width: 100%;
+  max-width: 800px;
+  margin-top: 20px;
+}

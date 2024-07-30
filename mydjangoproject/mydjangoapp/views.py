@@ -9,6 +9,9 @@ from django.http import JsonResponse
 from django.contrib.auth.models import User
 from rest_framework import status
 from rest_framework.decorators import action
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.parsers import MultiPartParser, FormParser
+from django.core.files.storage import default_storage
 from .models import *
 from .serializers import *
 
@@ -296,6 +299,42 @@ class UserAPIView(APIView):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+
+class UserDetailView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        user = User.objects.get(UserID=request.user.UserID)
+        serializer = UserSerializer(user)
+        return Response(serializer.data)
+    
+class UserUpdateView(APIView):
+    permission_classes = [IsAuthenticated]
+    
+    def patch(self, request):
+        user = User.objects.get(UserID=request.user.UserID)
+        username = request.data.get('UserName')
+        if username:
+            user.UserName = username
+            user.save()
+            return Response({'status': 'Username updated'})
+        return Response({'error': 'Username not provided'}, status=400)
+    
+    
+class UploadProfilePictureView(APIView):
+    parser_classes = [MultiPartParser, FormParser]
+
+    def post(self, request):
+        file = request.FILES.get('profilePicture')
+        if file:
+            file_name = default_storage.save(file.name, file)
+            file_url = default_storage.url(file_name)
+            # Save file_url to user profile here if needed
+            return Response({'profilePictureUrl': file_url})
+        return Response({'error': 'No file uploaded'}, status=400)
+
+
 
 class WeatherAPIView(APIView):
     def get(self, request):

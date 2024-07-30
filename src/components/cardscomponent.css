@@ -1,0 +1,39 @@
+/* CardsComponent.css */
+.card-group {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin: 20px;
+  }
+  
+  .card {
+    width: 300px;
+    margin: 20px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    background-color: #fff;
+  }
+  
+  .card-header {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+  }
+  
+  .card-description {
+    font-size: 1.1em;
+    margin-bottom: 10px;
+  }
+  
+  .icon {
+    margin-left: 10px;
+  }
+  
+  .warning {
+    color: red;
+  }
+  
+  .check {
+    color: green;
+  }
+  

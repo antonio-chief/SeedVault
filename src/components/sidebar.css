@@ -1,6 +1,6 @@
 /*sidebar.css*/
 .sidebar {
-    background-color: #181818;
+    background-color: #020230;
     color: white;
     width: 150px;
     padding: 20px;
@@ -34,12 +34,12 @@
   .menu li {
     padding: 15px 20px;
     cursor: pointer;
-    color: #888888;
+    color: #ff4646;
     transition: background-color 0.3s;
   }
   
   .menu li:hover, .menu .active {
-    background-color: #333333;
+    background-color: #ff4646;
     color: white;
   }
   
@@ -48,7 +48,7 @@
 
 
   .active {
-    background-color: #929191; /* Example background color for active menu items */
+    background-color: #ff4646; /* Example background color for active menu items */
     font-weight: bold; /* Example styling for active menu items */
     /* Add any other styles you want for active menu items */
   }
@@ -73,7 +73,7 @@
   }
   
   .menu li:hover, .menu li.active {
-    background-color: #333333;
+    background-color: #ff4646;
     color: white;
   }
   
@@ -91,7 +91,7 @@
   }
   
   .footer-menu li:hover, .footer-menu li.active {
-    background-color: #333333;
+    background-color: #ff4646;
     color: white;
   }
 
@@ -114,7 +114,7 @@
   }
   
   .menu li:hover, .menu .active, .footer-menu li:hover, .footer-menu .active {
-    background-color: #333333;
+    background-color: #ff4646;
     color: white;
   }
   
@@ -130,7 +130,7 @@
   }
   
   .menu li:hover, .menu li.active {
-    background-color: #333333;
+    background-color: #ff4646;
     color: white;
   }
   
@@ -148,7 +148,7 @@
   }
   
   .footer-menu li:hover, .footer-menu li.active {
-    background-color: #333333;
+    background-color: #ff4646;
     color: white;
   }
   

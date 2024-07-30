@@ -2,9 +2,10 @@ import React, { useState, useEffect, useRef } from 'react';
 import './header.css';
 import Notifications from './Notifications';
 
-//import bell from '../assets/icons/bell.png';
-import calendar from '../assets/icons/calendar.png';
-import user from '../assets/icons/user.png';
+
+import seeds from '../assets/images/seeds.png'
+import UserProfile from './UserProfile';
+
 
 function Header() {
   const [searchQuery, setSearchQuery] = useState('');
@@ -86,7 +87,7 @@ function Header() {
   return (
     <header className="header" ref={searchRef}>
       <div className="logo">
-        <img src="logo.png" alt="Logo" />
+        <img src={seeds} alt="Logo" />
         <span>Seed Vault</span>
       </div>
       <form className="search" onSubmit={handleSearch}>
@@ -109,15 +110,13 @@ function Header() {
           ))}
         </div>
       )}
-      <div className="user-profile">
+      <div>
         <Notifications />
-        <div className="notifications">
-          <i className="fas fa-bell"></i>
-          <i className="fas fa-calendar"><img src={calendar} alt="calendar icon" /></i>
-          <i className="fas fa-cog"></i>
-        </div>
-        <img src={user} alt="User" />
-        <span>John Doe</span>
+      </div>
+      <div>
+       
+        <UserProfile />
+        
       </div>
     </header>
   );

@@ -23,7 +23,16 @@ pillow
      #component?
      #concurrently --save-dev
      #dayjs
+     #react-chartjs-2 
+     #chart.js
+     #semantic-ui-react 
+     #semantic-ui-css
+     #rc-slider
+
 
 
 #    "start:server": "node server.js",
 #    "start": "concurrently \"npm run start:react\" \"npm run start:server\"",     
+
+
+#just npm install also installs dependencies

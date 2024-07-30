@@ -1,31 +1,19 @@
-import React, { useState, useEffect } from 'react';
-import Card from './Card';
+import React, { useState } from 'react';
 import AddNew from './overview/AddNew';
 import PieCharts from './overview/PieCharts';
 import Database from './overview/Database';
 import Monitoring from './overview/monitoring/Monitoring';
 import Security from './overview/security/Security';
 import Feedback from './overview/recommendations/Feedback'
-import axios from 'axios';
 import './overview.css';
 
+import GraphComponent from './overview/GraphComponent';
+import CardsComponent from './CardsComponent';
+
 const Overview = () => {
-  const [seeds, setSeeds] = useState([]);
   const [activeTab, setActiveTab] = useState('overview');
 
-  useEffect(() => {
-    const fetchSeedsData = async () => {
-      try {
-        const response = await axios.get('http://127.0.0.1:8001/seeds/');//TODO: change to the port to your django port
-        setSeeds(response.data);
-      } catch (error) {
-        console.error('Error fetching seeds data:', error);
-        setSeeds([]);
-      }
-    };
-
-    fetchSeedsData();
-  }, []);
+ //'http://127.0.0.1:8001/seeds/'     TODO: change to the port to your django port
 
   const handleTabClick = (tab) => {
     setActiveTab(tab);
@@ -57,16 +45,10 @@ const Overview = () => {
           <div>
             <div className="cards">
               <AddNew /> 
-              {seeds.length > 0 ? (
-                seeds.map((seed) => (
-                  <Card key={seed.SeedID} title={seed.SeedType} value={seed.SeedQuantity} unit="seeds" />
-                ))
-              ) : (
-                <p>No seeds data available.</p>
-              )}
-              
+              <CardsComponent/>
             </div>
             <PieCharts />
+            <GraphComponent />
             <div>
               <Database />
             </div>

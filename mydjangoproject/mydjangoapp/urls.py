@@ -51,4 +51,8 @@ urlpatterns = [
     path('storagefacilities/', StorageFacilitiesAPIView.as_view(), name='storagefacilities'),
     path('recommendations/', RecommendationsAPIView.as_view(), name='recommendations-api'),
     path('notifications/', NotificationAPIView.as_view(), name='notifications-api'),
+
+    path('userprofile/', UserDetailView.as_view(), name='user-detail'),
+    path('user/update/', UserUpdateView.as_view(), name='user-update'),
+    path('upload/', UploadProfilePictureView.as_view(), name='upload-profile-picture'),
 ]

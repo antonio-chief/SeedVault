@@ -67,6 +67,7 @@ class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = '__all__'
+        fields = ['UserID', 'UserName', 'UserEmail', 'UserPassword']
 
 class WeatherSerializer(serializers.ModelSerializer):
     class Meta:

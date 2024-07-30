@@ -2,10 +2,7 @@
 import React, { Component } from 'react';
 import Sidebar from './components/Sidebar';
 import Overview from './components/Overview';
-import Storage from './components/Storage';
-import Reports from './components/Reports';
 import Settings from './components/Settings';
-import Profile from './components/Profile';
 import Header from './components/Header';
 import Help from './components/Help';
 import FAQ from './components/FAQ';
@@ -51,10 +48,7 @@ class App extends Component {
             {activeSection === 'overview' && <Overview seeds={seeds} />}
 
             {/* Render other components based on active section */}
-            {activeSection === 'storage' && <Storage />}
-            {activeSection === 'reports' && <Reports />}
             {activeSection === 'settings' && <Settings />}
-            {activeSection === 'profile' && <Profile />}
             {activeSection === 'help' && <Help />}
             {activeSection === 'faq' && <FAQ />}
             {activeSection === 'about' && <About />}
