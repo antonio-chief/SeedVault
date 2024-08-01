@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
 import './settings.css';
+import Personalization from './settings/Personalization';
+import Preferences from './settings/Preferences';
+import Helpsettings from './settings/Helpsettings';
+import Privacy from './settings/Privacy';
 
 function Settings() {
 
@@ -36,29 +40,32 @@ function Settings() {
       <div className="tab-content">
         {activeTab === 'preferences' && (
           <div>
-            <h2>Preferences</h2>
-          
+            
+            <Preferences />
           </div>
         )}
 
         {activeTab === 'personalization' && (
           <div>
-            <h2>Personalization</h2>
+            
             {/* Add content for Security */}
+            <Personalization />
           </div>
         )}
 
         {activeTab === 'privacy' && (
           <div>
-            <h2>Privacy</h2>
+            
             {/* Add content for Monitoring */}
+            <Privacy />
           </div>
         )}
 
         {activeTab === 'Help and Support' && (
           <div>
-            <h2>Help and Support</h2>
+            
             {/* Add content for Recommendations */}
+            <Helpsettings />
           </div>
         )}
       </div>

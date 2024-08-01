@@ -2,6 +2,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    text-align: center;
 }
 
 .profile-header {
@@ -40,16 +41,18 @@
 
 .dropdown-menu button {
     display: block;
-    width: 100%;
+    width: 10%;
     margin-bottom: 5px;
 }
 
 .update-username,
 .update-password {
     margin-top: 10px;
+    
 }
 
 .update-username input,
 .update-password input {
     margin-right: 10px;
+
 }

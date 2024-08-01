@@ -11,7 +11,7 @@ const SecurityCard = () => {
 
     const fetchSecurityStatus = async () => {
         try {
-            const response = await axios.get('http://localhost:8001/securitybreach/');
+            const response = await axios.get('http://localhost:8001/security-breach/');
             setSecurityStatus(response.data.length > 0 ? 'Insecure' : 'Secure');
         } catch (error) {
             console.error('Error fetching security status:', error);

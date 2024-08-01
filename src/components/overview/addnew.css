@@ -13,6 +13,10 @@
     align-items: center;
     cursor: pointer;
   }
+
+  .add-new-circle :hover {
+    background-color: #03a6d3a4;
+  }
   
   .plus-sign {
     font-size: 24px;

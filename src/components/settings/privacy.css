@@ -1,0 +1,33 @@
+/* Privacy.css */
+
+.privacy-section {
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .privacy-section h3 {
+    margin-bottom: 10px;
+  }
+  
+  .privacy-section button {
+    width: 20%;
+    padding: 10px;
+    margin-bottom: 30px;
+    border: none;
+    background-color: #03a7d3;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+  
+  .privacy-section button:hover {
+    background-color: #03a6d3a4;
+  }
+  
+  .privacy-section select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }

@@ -1,0 +1,30 @@
+/* Preferences.css */
+
+.preference-section {
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .preference-section h3 {
+    margin-bottom: 10px;
+  }
+  
+  .preference-section select,
+  .preference-section button,
+  .preference-section label {
+    width: 20%;
+    padding: 10px;
+    margin-bottom: 30px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .preference-section button {
+    background-color: #03a7d3;
+    color: #fff;
+    cursor: pointer;
+  }
+  
+  .preference-section button:hover {
+    background-color: #03a6d3a4;
+  }

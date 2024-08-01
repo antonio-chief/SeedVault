@@ -43,7 +43,7 @@ const PieCharts = () => {
         {data.length === 0 ? (
           <p>No seed data available</p>
         ) : (
-          <PieChart width={400} height={400}>
+          <PieChart width={250} height={250}>
             <Pie
               data={seedsData}
               dataKey="value"
@@ -68,7 +68,7 @@ const PieCharts = () => {
         {data.length === 0 ? (
           <p>No storage data available</p>
         ) : (
-          <PieChart width={400} height={400}>
+          <PieChart width={250} height={250}>
             <Pie
               data={storageData}
               dataKey="value"
@@ -93,7 +93,7 @@ const PieCharts = () => {
         {data.length === 0 ? (
           <p>No age data available</p>
         ) : (
-          <PieChart width={400} height={400}>
+          <PieChart width={250} height={250}>
             <Pie
               data={ageData}
               dataKey="value"
