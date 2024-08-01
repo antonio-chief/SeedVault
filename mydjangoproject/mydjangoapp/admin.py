@@ -6,17 +6,14 @@ from django.contrib import admin
 
 from .models import *
 
-admin.site.register(mydjangoapp_seeds)
+admin.site.register(seeds)
 admin.site.register(Monitoring)
 admin.site.register(AdminFeedback)
 admin.site.register(AdminSeedCatalog)
 admin.site.register(AdminSubscription)
-admin.site.register(DampnessAnalytics)
 admin.site.register(Events)
-admin.site.register(LightExposureAnalytics)
 admin.site.register(Security)
 admin.site.register(Storage)
-admin.site.register(TemperatureAnalytics)
 admin.site.register(User)
 admin.site.register(Weather)
 admin.site.register(Worker)

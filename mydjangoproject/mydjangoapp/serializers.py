@@ -8,7 +8,7 @@ class AdminAllUsersSerializer(serializers.ModelSerializer):
 
 class SeedSerializer(serializers.ModelSerializer):
     class Meta:
-        model = mydjangoapp_seeds
+        model = seeds
         fields = '__all__'
 
 class MonitoringSerializer(serializers.ModelSerializer):
@@ -33,20 +33,13 @@ class AdminSubscriptionSerializer(serializers.ModelSerializer):
         model = AdminSubscription
         fields = '__all__'
 
-class DampnessAnalyticsSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = DampnessAnalytics
-        fields = '__all__'
 
 class EventsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Events
         fields = '__all__'
 
-class LightExposureAnalyticsSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = LightExposureAnalytics
-        fields = '__all__'
+
 
 class SecuritySerializer(serializers.ModelSerializer):
     class Meta:
@@ -58,10 +51,6 @@ class StorageSerializer(serializers.ModelSerializer):
         model = Storage
         fields = '__all__'
 
-class TemperatureAnalyticsSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = TemperatureAnalytics
-        fields = '__all__'
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:

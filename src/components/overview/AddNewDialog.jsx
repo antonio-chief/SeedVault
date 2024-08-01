@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import './addnewdialog.css';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import './addnewdialog.css';
 
 const AddNewDialog = ({ type, onClose }) => {
   const [facilityData, setFacilityData] = useState({
@@ -17,7 +17,42 @@ const AddNewDialog = ({ type, onClose }) => {
     buyingDate: '',
     expiryDate: '',
     additionalInfo: '',
+    optimalTemperature: '',
+    optimalLight: '',
+    optimalDampness: '',
+    seedID: '',
   });
+
+  const [seedCatalog, setSeedCatalog] = useState(null);
+  const [seedCatalogError, setSeedCatalogError] = useState('');
+
+  useEffect(() => {
+    const fetchSeedCatalog = async () => {
+      if (seedData.name) {
+        try {
+          const response = await axios.get(`http://127.0.0.1:8001/admin-seed-catalog/?seed_name=${seedData.name}`);
+          if (response.data.length > 0) {
+            setSeedCatalog(response.data[0]);
+            setSeedData((prevData) => ({
+              ...prevData,
+              seedID: response.data[0].SeedID,
+              optimalTemperature: response.data[0].OptimalTemperature,
+              optimalLight: response.data[0].OptimalLight,
+              optimalDampness: response.data[0].OptimalDampness,
+            }));
+            setSeedCatalogError('');
+          } else {
+            setSeedCatalog(null);
+            setSeedCatalogError('No such seed data in the catalog.');
+          }
+        } catch (error) {
+          console.error('Error fetching seed catalog data:', error);
+        }
+      }
+    };
+
+    fetchSeedCatalog();
+  }, [seedData.name]);
 
   const handleInputChange = (e, setData) => {
     const { name, value } = e.target;
@@ -30,9 +65,9 @@ const AddNewDialog = ({ type, onClose }) => {
   const handleSubmit = async () => {
     try {
       if (type === 'storageFacility') {
-        await axios.post('http://127.0.0.1:8000/storagefacilities/', facilityData);
+        await axios.post('http://127.0.0.1:8001/storagefacilities/', facilityData);
       } else if (type === 'seed') {
-        await axios.post('http://127.0.0.1:8000/seeds/', seedData);
+        await axios.post('http://127.0.0.1:8001/seeds/', seedData);
       }
       onClose();
     } catch (error) {
@@ -142,6 +177,33 @@ const AddNewDialog = ({ type, onClose }) => {
               />
             </label>
             <label>
+              Optimal Temperature:
+              <input
+                type="text"
+                name="optimalTemperature"
+                value={seedData.optimalTemperature}
+                readOnly
+              />
+            </label>
+            <label>
+              Optimal Light:
+              <input
+                type="text"
+                name="optimalLight"
+                value={seedData.optimalLight}
+                readOnly
+              />
+            </label>
+            <label>
+              Optimal Dampness:
+              <input
+                type="text"
+                name="optimalDampness"
+                value={seedData.optimalDampness}
+                readOnly
+              />
+            </label>
+            <label>
               Additional Information:
               <textarea
                 name="additionalInfo"
@@ -149,6 +211,7 @@ const AddNewDialog = ({ type, onClose }) => {
                 onChange={(e) => handleInputChange(e, setSeedData)}
               />
             </label>
+            {seedCatalogError && <p>{seedCatalogError}</p>}
           </div>
         )}
         <button onClick={handleSubmit}>Save</button>

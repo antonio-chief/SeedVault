@@ -1,27 +1,22 @@
 const express = require('express');
 const path = require('path');
 const app = express();
+const port = process.env.PORT || 4000;
 
-// Serve static files from the React app
+// Serve static files from the "build" directory
 app.use(express.static(path.join(__dirname, 'build')));
 
-// Serve website.html as the default page
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'build', 'a_website.html'));
+// Route to serve a_website.html
+app.get('/a_website', (req, res) => {
+  res.sendFile(path.join(__dirname, 'build', 'a_website.html'));
 });
 
-// Serve index.html for React routes
-app.get('/app', (req, res) => {
-    res.sendFile(path.join(__dirname, 'build', 'index.html'));
-});
-
-// Handle all other routes and redirect to index.html
+// Catch-all route for React application
 app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'build', 'index.html'));
+  res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
 
 // Start the server
-const port = process.env.PORT || 4000;
 app.listen(port, () => {
-    console.log(`Server running on port ${port}`);
+  console.log(`Server is running on http://localhost:${port}`);
 });

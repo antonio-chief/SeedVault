@@ -7,18 +7,18 @@ const Security = () => {
   const [restrictedAreas, setRestrictedAreas] = useState([]);
   const [securityBreaches, setSecurityBreaches] = useState([]);
   const [equipmentStatus, setEquipmentStatus] = useState([]);
-  const [newWorker, setNewWorker] = useState({ name: '', assignedPlace: '', image: null });
-  const [newRestrictedArea, setNewRestrictedArea] = useState({ areaName: '', reason: '' });
+  const [newWorker, setNewWorker] = useState({ Name: '', AssignedPlace: '', Image: null });
+  const [newRestrictedArea, setNewRestrictedArea] = useState({ AreaName: '', Reason: '' });
   const [showAddWorker, setShowAddWorker] = useState(false);
   const [showAddRestrictedArea, setShowAddRestrictedArea] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const workersResponse = await axios.get('http://127.0.0.1:8001/workers');
-        const restrictedAreasResponse = await axios.get('http://127.0.0.1:8001/restricted_areas');
-        const securityBreachesResponse = await axios.get('http://127.0.0.1:8001/security_breaches');
-        const equipmentStatusResponse = await axios.get('http://127.0.0.1:8001/equipment_status');
+        const workersResponse = await axios.get('http://127.0.0.1:8001/worker/');
+        const restrictedAreasResponse = await axios.get('http://127.0.0.1:8001/restricted-area/');
+        const securityBreachesResponse = await axios.get('http://127.0.0.1:8001/security-breach/');
+        const equipmentStatusResponse = await axios.get('http://127.0.0.1:8001/equipment-status/');
 
         setWorkers(workersResponse.data);
         setRestrictedAreas(restrictedAreasResponse.data);
@@ -38,7 +38,7 @@ const Security = () => {
   };
 
   const handleWorkerImageChange = (e) => {
-    setNewWorker({ ...newWorker, image: e.target.files[0] });
+    setNewWorker({ ...newWorker, Image: e.target.files[0] });
   };
 
   const handleRestrictedAreaInputChange = (e) => {
@@ -48,18 +48,18 @@ const Security = () => {
 
   const handleAddWorker = async () => {
     const formData = new FormData();
-    formData.append('name', newWorker.name);
-    formData.append('assignedPlace', newWorker.assignedPlace);
-    formData.append('image', newWorker.image);
+    formData.append('Name', newWorker.Name);
+    formData.append('AssignedPlace', newWorker.AssignedPlace);
+    formData.append('Image', newWorker.Image);
 
     try {
-      const response = await axios.post('http://127.0.0.1:8001/workers/', formData, {
+      const response = await axios.post('http://127.0.0.1:8001/worker/', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
       });
       setWorkers([response.data, ...workers]);
-      setNewWorker({ name: '', assignedPlace: '', image: null });
+      setNewWorker({ Name: '', AssignedPlace: '', Image: null });
       setShowAddWorker(false);
     } catch (error) {
       console.error('Failed to add worker:', error);
@@ -68,9 +68,9 @@ const Security = () => {
 
   const handleAddRestrictedArea = async () => {
     try {
-      const response = await axios.post('http://127.0.0.1:8001/restricted_areas/', newRestrictedArea);
+      const response = await axios.post('http://127.0.0.1:8001/restricted-area/', newRestrictedArea);
       setRestrictedAreas([response.data, ...restrictedAreas]);
-      setNewRestrictedArea({ areaName: '', reason: '' });
+      setNewRestrictedArea({ AreaName: '', Reason: '' });
       setShowAddRestrictedArea(false);
     } catch (error) {
       console.error('Failed to add restricted area:', error);
@@ -90,15 +90,15 @@ const Security = () => {
           <div className="add-worker">
             <input
               type="text"
-              name="name"
-              value={newWorker.name}
+              name="Name"
+              value={newWorker.Name}
               onChange={handleWorkerInputChange}
               placeholder="Worker Name"
             />
             <input
               type="text"
-              name="assignedPlace"
-              value={newWorker.assignedPlace}
+              name="AssignedPlace"
+              value={newWorker.AssignedPlace}
               onChange={handleWorkerInputChange}
               placeholder="Assigned Place"
             />
@@ -126,15 +126,15 @@ const Security = () => {
           <div className="add-restricted-area">
             <input
               type="text"
-              name="areaName"
-              value={newRestrictedArea.areaName}
+              name="AreaName"
+              value={newRestrictedArea.AreaName}
               onChange={handleRestrictedAreaInputChange}
               placeholder="Area Name"
             />
             <input
               type="text"
-              name="reason"
-              value={newRestrictedArea.reason}
+              name="Reason"
+              value={newRestrictedArea.Reason}
               onChange={handleRestrictedAreaInputChange}
               placeholder="Reason"
             />

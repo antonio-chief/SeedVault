@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import './settings.css';
 import Personalization from './settings/Personalization';
 import Preferences from './settings/Preferences';
-import Helpsettings from './settings/Helpsettings';
 import Privacy from './settings/Privacy';
 
 function Settings() {
@@ -31,9 +30,7 @@ function Settings() {
         <button className={activeTab === 'privacy' ? 'active' : ''} onClick={() => handleTabClick('privacy')}>
           Privacy
         </button>
-        <button className={activeTab === 'Help and support' ? 'active' : ''} onClick={() => handleTabClick('Help and Support')}>
-          Help and Support
-        </button>
+        
       </div>
 
         {/* Tab Content */}
@@ -58,14 +55,6 @@ function Settings() {
             
             {/* Add content for Monitoring */}
             <Privacy />
-          </div>
-        )}
-
-        {activeTab === 'Help and Support' && (
-          <div>
-            
-            {/* Add content for Recommendations */}
-            <Helpsettings />
           </div>
         )}
       </div>

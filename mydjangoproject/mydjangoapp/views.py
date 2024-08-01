@@ -16,7 +16,7 @@ from .models import *
 from .serializers import *
 
 class SeedViewSet(viewsets.ModelViewSet):
-    queryset = mydjangoapp_seeds.objects.all()
+    queryset = seeds.objects.all()
     serializer_class = SeedSerializer
     def perform_create(self, serializer):
         seed = serializer.save()
@@ -40,17 +40,10 @@ class AdminSubscriptionViewSet(viewsets.ModelViewSet):
     queryset = AdminSubscription.objects.all()
     serializer_class = AdminSubscriptionSerializer
 
-class DampnessAnalyticsViewSet(viewsets.ModelViewSet):
-    queryset = DampnessAnalytics.objects.all()
-    serializer_class = DampnessAnalyticsSerializer
-
 class EventsViewSet(viewsets.ModelViewSet):
     queryset = Events.objects.all()
     serializer_class = EventsSerializer
 
-class LightExposureAnalyticsViewSet(viewsets.ModelViewSet):
-    queryset = LightExposureAnalytics.objects.all()
-    serializer_class = LightExposureAnalyticsSerializer
 
 class SecurityViewSet(viewsets.ModelViewSet):
     queryset = Security.objects.all()
@@ -60,9 +53,6 @@ class StorageViewSet(viewsets.ModelViewSet):
     queryset = Storage.objects.all()
     serializer_class = StorageSerializer
 
-class TemperatureAnalyticsViewSet(viewsets.ModelViewSet):
-    queryset = TemperatureAnalytics.objects.all()
-    serializer_class = TemperatureAnalyticsSerializer
 
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
@@ -143,7 +133,7 @@ class NotificationViewSet(viewsets.ModelViewSet):
 
 class SeedAPIView(APIView):
     def get(self, request):
-        seeds = mydjangoapp_seeds.objects.all()
+        seeds = seeds.objects.all()
         serializer = SeedSerializer(seeds, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
@@ -152,7 +142,7 @@ class SeedAPIView(APIView):
         if serializer.is_valid(raise_exception=True):
             serializer.save()
             totals = Totals.objects.first()
-            totals.in_inventory += mydjangoapp_seeds.SeedQuantity #was seed.SeedQuantity
+            totals.in_inventory += seeds.SeedQuantity #was seed.SeedQuantity
             totals.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
@@ -209,18 +199,7 @@ class AdminSubscriptionAPIView(APIView):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-class DampnessAnalyticsAPIView(APIView):
-    def get(self, request):
-        analytics = DampnessAnalytics.objects.all()
-        serializer = DampnessAnalyticsSerializer(analytics, many=True)
-        return Response(serializer.data, status=status.HTTP_200_OK)
 
-    def post(self, request):
-        serializer = DampnessAnalyticsSerializer(data=request.data)
-        if serializer.is_valid(raise_exception=True):
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class EventsAPIView(APIView):
     def get(self, request):
@@ -235,18 +214,6 @@ class EventsAPIView(APIView):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-class LightExposureAnalyticsAPIView(APIView):
-    def get(self, request):
-        analytics = LightExposureAnalytics.objects.all()
-        serializer = LightExposureAnalyticsSerializer(analytics, many=True)
-        return Response(serializer.data, status=status.HTTP_200_OK)
-
-    def post(self, request):
-        serializer = LightExposureAnalyticsSerializer(data=request.data)
-        if serializer.is_valid(raise_exception=True):
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class SecurityAPIView(APIView):
     def get(self, request):
@@ -274,18 +241,6 @@ class StorageAPIView(APIView):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-class TemperatureAnalyticsAPIView(APIView):
-    def get(self, request):
-        analytics = TemperatureAnalytics.objects.all()
-        serializer = TemperatureAnalyticsSerializer(analytics, many=True)
-        return Response(serializer.data, status=status.HTTP_200_OK)
-
-    def post(self, request):
-        serializer = TemperatureAnalyticsSerializer(data=request.data)
-        if serializer.is_valid(raise_exception=True):
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class UserAPIView(APIView):
     def get(self, request):

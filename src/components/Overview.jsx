@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import AddNew from './overview/AddNew';
 import PieCharts from './overview/PieCharts';
 import Database from './overview/Database';
-import Monitoring from './overview/monitoring/Monitoring';
-import Security from './overview/security/Security';
-import Feedback from './overview/recommendations/Feedback'
+import Monitoring from './overview/Monitoring';
+import Security from './overview/Security';
+import Feedback from './overview/Feedback'
 import './overview.css';
 
 import GraphComponent from './overview/GraphComponent';

@@ -28,7 +28,7 @@ const AddNew = () => {
         </div>
       )}
       {dialogType && <AddNewDialog type={dialogType} onClose={() => setDialogType('')} />}
-        <h5>Add New</h5>
+      <h5>Add New</h5>
     </div>
   );
 };

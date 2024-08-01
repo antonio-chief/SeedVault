@@ -2,38 +2,47 @@ from django.db import models
 from django.utils import timezone
 # Create your models here.
 
-#UserSeedCatalog
-class mydjangoapp_seeds(models.Model):
 
+# Seed Model
+class seeds(models.Model):
     CATEGORIES = [
         ('seed', 'Seed'),
         ('germplasm', 'Germplasm'),
     ]
     TYPES = [
         ('herb', 'Herb'),
+        ('vegetable', 'Vegetable'),
+        ('flower', 'Flower'),
+        ('fruit', 'Fruit'),
+        ('legume', 'Legume'),
+        ('cereal', 'Cereal'),
+        ('spice', 'Spice'),
         ('other', 'Other'),
     ]
 
     SeedID = models.CharField(max_length=100)
-    SeedCategory = models.CharField(max_length=255)
-    SeedType = models.CharField(max_length=255)
-    DateBought = models.DateTimeField(default= timezone.now)
-    ExpiryDate = models.DateTimeField(default= timezone.now)
-    PlantingDate = models.DateTimeField(default= timezone.now)
+    SeedCategory = models.CharField(max_length=255, choices=CATEGORIES)
+    SeedType = models.CharField(max_length=255, choices=TYPES)
+    SeedName = models.CharField(max_length=255)
+    DateBought = models.DateTimeField(default=timezone.now)
+    ExpiryDate = models.DateTimeField(default=timezone.now)
+    PlantingDate = models.DateTimeField(default=timezone.now)
     TemperatureRequirement = models.FloatField()
     LightRequirement = models.FloatField()
     MoistureRequirement = models.FloatField()
     SeedQuantity = models.IntegerField()
+    AdditionalInfo = models.CharField(max_length=800)
 
 
     def __str__(self):
-        return self.SeedType
+        return self.SeedName
 
    
 
 #Monitoring
 class Monitoring(models.Model):
     SeedID = models.CharField(max_length=100)
+    SeedName = models.CharField(max_length=100)
     CurrentTemperature = models.CharField(max_length=100)
     OptimalTemperature = models.CharField(max_length=100)
     LowTemperatureLimit = models.CharField(max_length=100)
@@ -46,9 +55,10 @@ class Monitoring(models.Model):
     OptimalLight = models.FloatField()
     LowLightLimit = models.FloatField()
     HighLightLimit = models.FloatField()
+    Image=models.ImageField()
 
     def __str__(self):
-        return self.SeedID
+        return self.SeedName
 
   
 
@@ -68,9 +78,11 @@ class AdminAllUsers(models.Model):
 # AdminFeedback Model
 class AdminFeedback(models.Model):
     UserID = models.CharField(max_length=100)
+    UserName=models.CharField(max_length=100)
     Feedback = models.TextField()
-    Responses = models.TextField()
     Reports = models.TextField()
+    Responses = models.TextField()
+    
 
     def __str__(self):
         return self.UserID
@@ -110,35 +122,13 @@ class AdminSubscription(models.Model):
     def __str__(self):
         return self.UserName
 
-# DampnessAnalytics Model
-class DampnessAnalytics(models.Model):
-    SeedID = models.CharField(max_length=100)
-    SeedCategory = models.CharField(max_length=50)
-    SeedName = models.CharField(max_length=100)
-    CurrentDampness = models.FloatField()
-    OptimalDampness = models.FloatField()
-    LowDampnessLimit = models.FloatField()
-    HighDampnessLimit = models.FloatField()
-    MorningDampness = models.FloatField()
-    NoonDampness = models.FloatField()
-    EveningDampness = models.FloatField()
-    NightDampness = models.FloatField()
-    DampnessToday = models.FloatField()
-    DampnessYesterday = models.FloatField()
-    DampnessLastWeek = models.FloatField()
-    DampnessLastMonth = models.FloatField()
-
-    def __str__(self):
-        return self.DampnessToday
 
 # Events Model
 class Events(models.Model):
-    Date = models.CharField(max_length=50)
+    Date = models.DateTimeField()
     Event = models.CharField(max_length=100)
     EventLocation = models.CharField(max_length=255)
-    AreasWithEvents = models.CharField(max_length=255)
-    SeedToPlant = models.CharField(max_length=100)
-    SeedID = models.CharField(max_length=100)
+    Activity = models.CharField(max_length=100)
 
     def __str__(self):
         return self.Event
@@ -152,26 +142,7 @@ class Events(models.Model):
             message = f"Event '{self.Event}' is in {days_until_event} day(s)!"
             Notification.objects.create(event=self, message=message)
 
-# LightExposureAnalytics Model
-class LightExposureAnalytics(models.Model):
-    SeedID = models.CharField(max_length=100)
-    SeedCategory = models.CharField(max_length=50)
-    SeedName = models.CharField(max_length=100)
-    CurrentLight = models.FloatField()
-    OptimalLight = models.FloatField()
-    LowLightLimit = models.FloatField()
-    HighLightLimit = models.FloatField()
-    MorningLight = models.FloatField()
-    NoonLight = models.FloatField()
-    EveningLight = models.FloatField()
-    NightLight = models.FloatField()
-    LightToday = models.FloatField()
-    LightYesterday = models.FloatField()
-    LightLastWeek = models.FloatField()
-    LightLastMonth = models.FloatField()
 
-    def __str__(self):
-        return self.LightToday
 
 # Security Model
 class Security(models.Model):
@@ -183,48 +154,32 @@ class Security(models.Model):
 
     def __str__(self):
         return self.PersonID
+    
 
-# Storage Model
+# Updated Storage Model
 class Storage(models.Model):
-    SeedID = models.CharField(max_length=100)
-    WarehouseName = models.CharField(max_length=100)
-    WarehouseNo = models.IntegerField()
-    ShelfNo = models.IntegerField()
-    UnitNo = models.IntegerField()
-    VaultName = models.CharField(max_length=100)
-    VaultNo = models.IntegerField()
-    SeedBankName = models.CharField(max_length=100)
-    SeedBankNo = models.IntegerField()
-    SeedCaseNo = models.IntegerField()
-    CaseSectionNo = models.IntegerField()
-    SeedBoxNo = models.IntegerField()
-    BoxUnitNo = models.IntegerField()
-    SeedAlbumNo = models.IntegerField()
-    PageNo = models.IntegerField()
+    SeedID = models.CharField(max_length=100, null=True, blank=True)
+    WarehouseName = models.CharField(max_length=100, null=True, blank=True)
+    WarehouseNo = models.IntegerField(null=True, blank=True)
+    ShelfNo = models.IntegerField(null=True, blank=True)
+    UnitNo = models.IntegerField(null=True, blank=True)
+    VaultName = models.CharField(max_length=100, null=True, blank=True)
+    VaultNo = models.IntegerField(null=True, blank=True)
+    SeedBankName = models.CharField(max_length=100, null=True, blank=True)
+    SeedBankNo = models.IntegerField(null=True, blank=True)
+    SeedCaseNo = models.IntegerField(null=True, blank=True)
+    CaseSectionNo = models.IntegerField(null=True, blank=True)
+    SeedBoxNo = models.IntegerField(null=True, blank=True)
+    BoxUnitNo = models.IntegerField(null=True, blank=True)
+    SeedAlbumNo = models.IntegerField(null=True, blank=True)
+    PageNo = models.IntegerField(null=True, blank=True)
+    SeedName = models.CharField(max_length=100, null=True, blank=True)
 
     def __str__(self):
         return self.SeedID
 
-# TemperatureAnalytics Model
-class TemperatureAnalytics(models.Model):
-    SeedID = models.CharField(max_length=100)
-    SeedCategory = models.CharField(max_length=50)
-    SeedName = models.CharField(max_length=100)
-    CurrentTemperature = models.CharField(max_length=50)
-    OptimalTemperature = models.CharField(max_length=50)
-    LowTemperatureLimit = models.CharField(max_length=50)
-    HighTemperatureLimit = models.CharField(max_length=50)
-    MorningTemperature = models.CharField(max_length=50)
-    NoonTemperature = models.CharField(max_length=50)
-    EveningTemperature = models.CharField(max_length=50)
-    NightTemperature = models.CharField(max_length=50)
-    TemperatureToday = models.CharField(max_length=50)
-    TemperatureYesterday = models.CharField(max_length=50)
-    TemperatureLastWeek = models.CharField(max_length=50)
-    TemperatureLastMonth = models.CharField(max_length=50)
 
-    def __str__(self):
-        return self.CurrentTemperature
+
 
 # User Model
 class User(models.Model):
@@ -269,7 +224,7 @@ class Worker(models.Model):
     WorkerID = models.CharField(max_length=50)
     Name = models.CharField(max_length=100)
     AssignedPlace = models.CharField(max_length=255)
-    Image = models.ImageField(upload_to='worker_images/', blank=True, null=True)
+    Image = models.ImageField(blank=True, null=True)
 
     def __str__(self):
         return self.Name

@@ -76,7 +76,7 @@ const Feedback = () => {
         ) : (
           feedbackHistory.map((feedback) => (
             <div key={feedback.id} className="feedback-item">
-              <h3>User: {feedback.UserID}</h3>
+              <h3>User: {feedback.UserName}</h3>
               <p>{feedback.Feedback}</p>
               <p>Response: {feedback.Responses}</p>
             </div>
