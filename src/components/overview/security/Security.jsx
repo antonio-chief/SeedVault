@@ -15,10 +15,10 @@ const Security = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const workersResponse = await axios.get('http://127.0.0.1:8000/workers');
-        const restrictedAreasResponse = await axios.get('http://127.0.0.1:8000/restricted_areas');
-        const securityBreachesResponse = await axios.get('http://127.0.0.1:8000/security_breaches');
-        const equipmentStatusResponse = await axios.get('http://127.0.0.1:8000/equipment_status');
+        const workersResponse = await axios.get('http://127.0.0.1:8001/workers');
+        const restrictedAreasResponse = await axios.get('http://127.0.0.1:8001/restricted_areas');
+        const securityBreachesResponse = await axios.get('http://127.0.0.1:8001/security_breaches');
+        const equipmentStatusResponse = await axios.get('http://127.0.0.1:8001/equipment_status');
 
         setWorkers(workersResponse.data);
         setRestrictedAreas(restrictedAreasResponse.data);
@@ -53,7 +53,7 @@ const Security = () => {
     formData.append('image', newWorker.image);
 
     try {
-      const response = await axios.post('http://127.0.0.1:8000/workers/', formData, {
+      const response = await axios.post('http://127.0.0.1:8001/workers/', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
@@ -68,7 +68,7 @@ const Security = () => {
 
   const handleAddRestrictedArea = async () => {
     try {
-      const response = await axios.post('http://127.0.0.1:8000/restricted_areas/', newRestrictedArea);
+      const response = await axios.post('http://127.0.0.1:8001/restricted_areas/', newRestrictedArea);
       setRestrictedAreas([response.data, ...restrictedAreas]);
       setNewRestrictedArea({ areaName: '', reason: '' });
       setShowAddRestrictedArea(false);
@@ -109,7 +109,7 @@ const Security = () => {
         <div className="workers-list">
           {workers.map((worker) => (
             <div className="worker-card" key={worker.WorkerID}>
-              {worker.Image && <img src={`http://127.0.0.1:8002${worker.Image}`} alt="Worker" />}
+              {worker.Image && <img src={`http://127.0.0.1:8001${worker.Image}`} alt="Worker" />}
               <p>Name: {worker.Name}</p>
               <p>Assigned Place: {worker.AssignedPlace}</p>
             </div>

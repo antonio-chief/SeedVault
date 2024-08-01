@@ -1,9 +1,10 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Dropdown } from 'semantic-ui-react';
-import { BarChart, Bar, XAxis, YAxis, Tooltip, Legend, CartesianGrid, Cell } from 'recharts'; // Import Cell
+import { BarChart, Bar, XAxis, YAxis, Tooltip, Legend, CartesianGrid, Cell, Line } from 'recharts';
 import 'semantic-ui-css/semantic.min.css';
 import './graphcomponent.css';
+
 
 const GraphComponent = () => {
     const [data, setData] = useState([]);
@@ -33,8 +34,27 @@ const GraphComponent = () => {
 
     const seedOptions = [
         { key: 'All Seeds', value: 'All Seeds', text: 'All Seeds' },
-        ...data.map(item => ({ key: item.SeedID, value: item.SeedID, text: item.SeedID }))
+        ...data.map(item => ({
+            key: item.SeedID,
+            value: item.SeedID,
+            text: item.SeedName ? `${item.SeedName} (${item.SeedID})` : item.SeedID
+        }))
     ];
+
+    const generateBarColor = (value, lowLimit, highLimit) => {
+        if (value < lowLimit || value > highLimit) {
+            return 'red';
+        }
+        return '#8884d8';
+    };
+
+    const renderBars = (entry) => (
+        <>
+            <Bar dataKey="CurrentTemperature" fill={generateBarColor(entry.CurrentTemperature, entry.LowTemperatureLimit, entry.HighTemperatureLimit)} />
+            <Bar dataKey="CurrentDampness" fill={generateBarColor(entry.CurrentDampness, entry.LowDampnessLimit, entry.HighDampnessLimit)} />
+            <Bar dataKey="CurrentLight" fill={generateBarColor(entry.CurrentLight, entry.LowLightLimit, entry.HighLightLimit)} />
+        </>
+    );
 
     return (
         <div className="graph-component">
@@ -45,41 +65,30 @@ const GraphComponent = () => {
                 options={seedOptions}
                 onChange={(e, { value }) => setSelectedSeed(value)}
                 className="dropdown"
+                style={{ margin: '0 auto' }}
             />
-            <BarChart
-                width={800}
-                height={400}
-                data={filteredData}
-                margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
-            >
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="SeedID" />
-                <YAxis />
-                <Tooltip />
-                <Legend />
-                <Bar
-                    dataKey="CurrentTemperature"
-                    name="Current Temperature"
-                    fill="#8884d8"
+            <div className="chart-container">
+                <BarChart
+                    width={800}
+                    height={400}
+                    data={filteredData}
+                    margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
                 >
+                    <CartesianGrid strokeDasharray="3 3" />
+                    <XAxis dataKey="SeedID" />
+                    <YAxis />
+                    <Tooltip />
+                    <Legend />
                     {filteredData.map((entry, index) => (
-                        <Cell
-                            key={`cell-${index}`}
-                            fill={
-                                entry.CurrentTemperature < entry.LowTemperatureLimit || 
-                                entry.CurrentTemperature > entry.HighTemperatureLimit 
-                                ? 'red' 
-                                : '#8884d8'
-                            }
-                        />
+                        <React.Fragment key={`entry-${index}`}>
+                            <Line type="monotone" dataKey={() => entry.HighTemperatureLimit} stroke="red" />
+                            <Line type="monotone" dataKey={() => entry.LowTemperatureLimit} stroke="blue" />
+                            {renderBars(entry)}
+                        </React.Fragment>
                     ))}
-                </Bar>
-                <Bar
-                    dataKey="OptimalTemperature"
-                    name="Optimal Temperature"
-                    fill="green"
-                />
-            </BarChart>
+                </BarChart>
+            </div>
+            
             <input
                 type="range"
                 min="0"
@@ -88,6 +97,7 @@ const GraphComponent = () => {
                 onChange={(e) => setSelectedSeed(data[e.target.value].SeedID)}
                 className="range-input"
             />
+            
         </div>
     );
 };

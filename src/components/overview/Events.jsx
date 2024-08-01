@@ -38,7 +38,7 @@ const Events = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('http://127.0.0.1:8001/api/events/', newEvent);
+      await axios.post('http://127.0.0.1:8001/events/', newEvent);
       setNewEvent({
         Date: '',
         Event: '',

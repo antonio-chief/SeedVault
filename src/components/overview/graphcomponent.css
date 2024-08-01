@@ -11,8 +11,10 @@
 }
 
 .dropdown {
-  width: 100%;
+  width: 50%;
   margin-bottom: 20px;
+  margin-left: 0%;
+  text-align: left; 
 }
 
 .chart {
@@ -22,7 +24,9 @@
 }
 
 .range-input {
-  width: 100%;
+  width: 50%;
   max-width: 800px;
   margin-top: 20px;
+  margin-left: 0%;
+  text-align: left;
 }
