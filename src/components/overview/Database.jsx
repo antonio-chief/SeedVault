@@ -49,7 +49,7 @@ const Database = () => {
                   <td>{seed.PlantingDate}</td>
                   <td>{seed.DateBought}</td>
                   <td>{seed.ExpiryDate}</td>
-                  <td>{seed.SeedQuantity}</td>
+                  <td>{seed.AdditionalInfo}</td>
                 </tr>
               ))}
             </tbody>
