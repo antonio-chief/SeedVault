@@ -132,7 +132,7 @@ STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
     # Uncomment or remove this line if you're not using it
-    # os.path.join(BASE_DIR, 'static'),
+    os.path.join(BASE_DIR, 'static'),
 ]
 
 
