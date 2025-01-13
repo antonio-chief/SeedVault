@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Dropdown } from 'semantic-ui-react';
-import { BarChart, Bar, XAxis, YAxis, Tooltip, Legend, CartesianGrid, Cell, Line } from 'recharts';
+import { BarChart, Bar, XAxis, YAxis, Tooltip, Legend, CartesianGrid, Line, Cell } from 'recharts';
 import 'semantic-ui-css/semantic.min.css';
 import './graphcomponent.css';
-
 
 const GraphComponent = () => {
     const [data, setData] = useState([]);
@@ -48,13 +47,38 @@ const GraphComponent = () => {
         return '#8884d8';
     };
 
-    const renderBars = (entry) => (
-        <>
-            <Bar dataKey="CurrentTemperature" fill={generateBarColor(entry.CurrentTemperature, entry.LowTemperatureLimit, entry.HighTemperatureLimit)} />
-            <Bar dataKey="CurrentDampness" fill={generateBarColor(entry.CurrentDampness, entry.LowDampnessLimit, entry.HighDampnessLimit)} />
-            <Bar dataKey="CurrentLight" fill={generateBarColor(entry.CurrentLight, entry.LowLightLimit, entry.HighLightLimit)} />
-        </>
-    );
+    const CustomTooltip = ({ active, payload, label }) => {
+        if (active && payload && payload.length) {
+            const data = payload[0].payload;
+            const extractNumber = (str) => {
+                const match = str.match(/-?\d+/);
+                return match ? parseInt(match[0], 10) : null;
+            };
+
+            const currentTemp = extractNumber(data.CurrentTemperature);
+            const lowTempLimit = extractNumber(data.LowTemperatureLimit);
+            const highTempLimit = extractNumber(data.HighTemperatureLimit);
+
+            const isWithinLimits = (value, lowLimit, highLimit) => {
+                if (lowLimit === null || highLimit === null) return true;
+                return value >= lowLimit && value <= highLimit;
+            };
+
+            const allWithinLimits = isWithinLimits(currentTemp, lowTempLimit, highTempLimit) &&
+                                    isWithinLimits(data.CurrentDampness, data.LowDampnessLimit, data.HighDampnessLimit) &&
+                                    isWithinLimits(data.CurrentLight, data.LowLightLimit, data.HighLightLimit);
+
+            return (
+                <div className="custom-tooltip" style={{ border: '1px solid #ccc', padding: '10px', backgroundColor: '#fff' }}>
+                    <p className="label" style={{ color: allWithinLimits ? 'green' : 'red' }}><strong>{`Seed ID: ${label}`}</strong></p>
+                    <p style={{ color: isWithinLimits(currentTemp, lowTempLimit, highTempLimit) ? 'green' : 'red' }}><strong>{`Current Temperature: ${data.CurrentTemperature}`}</strong></p>
+                    <p style={{ color: isWithinLimits(data.CurrentDampness, data.LowDampnessLimit, data.HighDampnessLimit) ? 'green' : 'red' }}><strong>{`Current Dampness: ${data.CurrentDampness}`}</strong></p>
+                    <p style={{ color: isWithinLimits(data.CurrentLight, data.LowLightLimit, data.HighLightLimit) ? 'green' : 'red' }}><strong>{`Current Light: ${data.CurrentLight}`}</strong></p>
+                </div>
+            );
+        }
+        return null;
+    };
 
     return (
         <div className="graph-component">
@@ -63,7 +87,7 @@ const GraphComponent = () => {
                 fluid
                 selection
                 options={seedOptions}
-                onChange={(e, { value }) => setSelectedSeed(value)}
+                onChange={(event, { value }) => setSelectedSeed(value)}
                 className="dropdown"
                 style={{ margin: '0 auto' }}
             />
@@ -72,20 +96,30 @@ const GraphComponent = () => {
                     width={800}
                     height={400}
                     data={filteredData}
-                    margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
+                    layout="vertical"
                 >
                     <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="SeedID" />
-                    <YAxis />
-                    <Tooltip />
+                    <XAxis type="number" />
+                    <YAxis type="category" dataKey="SeedID" />
+                    <Tooltip content={<CustomTooltip />} />
                     <Legend />
-                    {filteredData.map((entry, index) => (
-                        <React.Fragment key={`entry-${index}`}>
-                            <Line type="monotone" dataKey={() => entry.HighTemperatureLimit} stroke="red" />
-                            <Line type="monotone" dataKey={() => entry.LowTemperatureLimit} stroke="blue" />
-                            {renderBars(entry)}
-                        </React.Fragment>
-                    ))}
+                    <Bar dataKey="CurrentTemperature" fill="#8884d8">
+                        {filteredData.map((entry, index) => (
+                            <Cell key={`cell-${index}`} fill={generateBarColor(entry.CurrentTemperature, entry.LowTemperatureLimit, entry.HighTemperatureLimit)} />
+                        ))}
+                    </Bar>
+                    <Bar dataKey="CurrentDampness" fill="#82ca9d">
+                        {filteredData.map((entry, index) => (
+                            <Cell key={`cell-${index}`} fill={generateBarColor(entry.CurrentDampness, entry.LowDampnessLimit, entry.HighDampnessLimit)} />
+                        ))}
+                    </Bar>
+                    <Bar dataKey="CurrentLight" fill="#ffc658">
+                        {filteredData.map((entry, index) => (
+                            <Cell key={`cell-${index}`} fill={generateBarColor(entry.CurrentLight, entry.LowLightLimit, entry.HighLightLimit)} />
+                        ))}
+                    </Bar>
+                    <Line type="monotone" dataKey="HighTemperatureLimit" stroke="red" />
+                    <Line type="monotone" dataKey="LowTemperatureLimit" stroke="blue" />
                 </BarChart>
             </div>
             

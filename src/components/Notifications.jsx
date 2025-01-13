@@ -48,8 +48,11 @@ const Notifications = () => {
 
   const handleResolve = async (id) => {
     try {
-      await axios.post(`http://127.0.0.1:8001/notifications/${id}/resolve/`);
+      // Simulate sending a resolve message
+      console.log(`Notification with ID ${id} resolved.`);
       fetchNotifications();
+      // TODO: Send message to machine (e.g., AC) when ready
+      // await axios.post('http://machine-ip-address/command', { command: 'resolve', id });
     } catch (error) {
       console.error('Error resolving notification:', error);
     }
@@ -78,7 +81,7 @@ const Notifications = () => {
                   <pre>{JSON.stringify(notification.sensor_data, null, 2)}</pre>
                 </div>
               )}
-              {notification.message.toLowerCase().includes('sensor') && (
+              {notification.sensor_data === 2 && (//TODO: Change to actual sensor data
                 <button className="notification-resolve" onClick={() => handleResolve(notification.id)}>
                   Resolve
                 </button>

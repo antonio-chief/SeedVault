@@ -2,6 +2,7 @@
 
 .personalization-section {
     margin-bottom: 20px;
+  
   }
   
   .personalization-section h3 {
@@ -32,3 +33,12 @@
   }
 
   /*Affects most of the other code section especially the buttons part*/
+
+  img {
+    width: 200px;
+    height: 200px;
+    cursor: pointer;
+    border-radius: 50%;
+    border: 2px solid #ccc;
+    object-fit: contain;
+  }

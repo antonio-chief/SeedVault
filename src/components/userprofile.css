@@ -49,3 +49,7 @@
 .username   {
     color : #ffffff;
 }
+
+button {
+    min-width: 100px;
+}

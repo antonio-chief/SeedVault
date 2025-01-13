@@ -250,8 +250,9 @@ const AddNewDialog = ({ type, onClose }) => {
                 value={seedData.additionalInfo}
                 onChange={(e) => handleInputChange(e, setSeedData)}
               />
+              
             </label>
-            {seedCatalogError && <p>{seedCatalogError}</p>}
+            {/* TODO: add storage input section*/seedCatalogError && <p>{seedCatalogError}</p>}
           </div>
         )}
         <button onClick={handleSubmit}>Save</button>
