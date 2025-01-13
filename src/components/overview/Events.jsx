@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import dayjs from 'dayjs';
+import isSameOrAfter from 'dayjs/plugin/isSameOrAfter';
+
 import './events.css';
+dayjs.extend(isSameOrAfter);
 
 const Events = () => {
   const [events, setEvents] = useState([]);
@@ -9,11 +12,10 @@ const Events = () => {
     Date: '',
     Event: '',
     EventLocation: '',
-    AreasWithEvents: '',
-    SeedToPlant: '',
-    SeedID: ''
+    Activity: ''
   });
   const [showDialog, setShowDialog] = useState(false);
+  const [showHistory, setShowHistory] = useState(false);
 
   useEffect(() => {
     fetchEvents();
@@ -43,9 +45,7 @@ const Events = () => {
         Date: '',
         Event: '',
         EventLocation: '',
-        AreasWithEvents: '',
-        SeedToPlant: '',
-        SeedID: ''
+        Activity: ''
       });
       setShowDialog(false);
       fetchEvents();
@@ -63,6 +63,9 @@ const Events = () => {
     if (daysUntilEvent <= 2) return 'orange';
     return 'green';
   };
+
+  const pastEvents = events.filter(event => dayjs(event.Date).isBefore(dayjs()));
+  const upcomingEvents = events.filter(event => dayjs(event.Date).isSameOrAfter(dayjs()));
 
   return (
     <div className="events-container">
@@ -96,25 +99,9 @@ const Events = () => {
             />
             <input
               type="text"
-              name="AreasWithEvents"
-              placeholder="Areas With Events"
-              value={newEvent.AreasWithEvents}
-              onChange={handleChange}
-              required
-            />
-            <input
-              type="text"
-              name="SeedToPlant"
-              placeholder="Seed To Plant"
-              value={newEvent.SeedToPlant}
-              onChange={handleChange}
-              required
-            />
-            <input
-              type="text"
-              name="SeedID"
-              placeholder="Seed ID"
-              value={newEvent.SeedID}
+              name="Activity"
+              placeholder="Activity"
+              value={newEvent.Activity}
               onChange={handleChange}
               required
             />
@@ -124,7 +111,7 @@ const Events = () => {
         </div>
       )}
       <div className="events-timeline">
-        {events.map((event) => (
+        {upcomingEvents.map((event) => (
           <div
             key={event.id}
             className="event-item"
@@ -133,12 +120,25 @@ const Events = () => {
             <h3>{event.Event}</h3>
             <p>Date: {event.Date}</p>
             <p>Location: {event.EventLocation}</p>
-            <p>Areas: {event.AreasWithEvents}</p>
-            <p>Seed to Plant: {event.SeedToPlant}</p>
-            <p>Seed ID: {event.SeedID}</p>
+            <p>Activity: {event.Activity}</p>
           </div>
         ))}
       </div>
+      <button onClick={() => setShowHistory(!showHistory)}>
+        {showHistory ? 'Hide Events History' : 'Show Events History'}
+      </button>
+      {showHistory && (
+        <div className="events-history">
+          {pastEvents.map((event) => (
+            <div key={event.id} className="event-item">
+              <h3>{event.Event}</h3>
+              <p>Date: {event.Date}</p>
+              <p>Location: {event.EventLocation}</p>
+              <p>Activity: {event.Activity}</p>
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 };
