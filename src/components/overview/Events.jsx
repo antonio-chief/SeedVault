@@ -59,7 +59,7 @@ const Events = () => {
     const eventDay = dayjs(eventDate);
     const daysUntilEvent = eventDay.diff(today, 'day');
 
-    if (daysUntilEvent <= 1) return 'red';
+    if (daysUntilEvent <= 1) return '#FF4646';
     if (daysUntilEvent <= 2) return 'orange';
     return 'green';
   };

@@ -62,7 +62,8 @@
 body {
   font-family: 'Arial', sans-serif;
   margin: 0;
-  height: 100vh;
+  height: auto;
+  width: auto;
   background-color: #f4f7fc;
   display: flex;
   flex-direction: column;
@@ -83,7 +84,7 @@ body {
   flex: 1;
   padding: 20px;
   background-color: white;
-  overflow-y: auto;
+ 
 }
 
 /* Additional styling */

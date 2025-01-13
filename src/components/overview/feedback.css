@@ -18,14 +18,16 @@
   }
   
   .feedback-card button {
-    background-color: #03a7d3;
+    background-color: #1A73E8;
     color: white;
     border: none;
     padding: 10px;
     border-radius: 5px;
     cursor: pointer;
   }
-  
+.feedback-card button:hover {
+  background-color: #1a73e8d7;
+}
   .feedback-history-card, .recommendations-card {
     margin-top: 20px;
   }

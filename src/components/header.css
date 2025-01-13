@@ -1,129 +1,85 @@
+/* header.css */
+
+.ui.card > .content > .header:not(.ui), .ui.cards > .card > .content > .header:not(.ui) {
+  color: white;
+}
+
 .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-bottom: 20px;
-    padding-top: 20px;
-    padding-left: 10px;
-    padding-right: 10px;
-    background-color: #6967678f;
-    margin: 0;
-  }
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 10px;
+  background-color: #242526; /* Updated to recommended color */
+  margin: 0;
   
-  .search {
-    display: flex;
-    align-items: center;
-  }
-  
-  .search input {
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    width: 300px;
-  }
-  
-  .search button {
-    padding: 10px;
-    border: none;
-    background-color: #020230;
-    color: white;
-    border-radius: 5px;
-    margin-left: 10px;
-  }
-  
-  .user-profile {
-    display: flex;
-    align-items: center;
-  }
-  
-  .user-profile img {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    margin-right: 10px;
-  }
-  
-  .user-profile .notifications i {
-    margin: 0 10px;
-    cursor: pointer;
-  }
-  
+}
 
+.search {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
 
+.search input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 300px;
+}
 
+.search button {
+  padding: 10px;
+  border: none;
+  background-color: #1A73E8; /* Updated to recommended button color */
+  color: white;
+  border-radius: 5px;
+  margin-left: 10px;
+}
 
+.dropdown {
+  position: absolute;
+  top: 100%;
+  left: 410px;
+  background: white;
+  border: 1px solid #ccc;
+  width: 400px;
+  z-index: 1000;
+  max-height: 200px;
+  overflow-y: auto;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
 
-  .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: relative;
-  }
-  
-  .search {
-    display: flex;
-    align-items: center;
-    position: relative;
-  }
-  
-  .search input {
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    width: 300px;
-  }
-  
-  .search button {
-    padding: 10px;
-    border: none;
-    background-color: #333333;
-    color: white;
-    border-radius: 5px;
-    margin-left: 10px;
-  }
-  
-  .dropdown {
-    position: absolute;
-    top: 100%;
-    left: 410px;
-    background: white;
-    border: 1px solid #ccc;
-    width: 400px;
-    z-index: 1000;
-    max-height: 200px;
-    overflow-y: auto;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  .dropdown-item {
-    padding: 5px;
-    font-size: 14px;
-    border-bottom: 1px solid #eee;
-    cursor: pointer;
-  }
-  
-  .dropdown-item:last-child {
-    border-bottom: none;
-  }
-  
-  .dropdown-item:hover {
-    background-color: #f1f1f1;
-  }
-  
-  .user-profile {
-    display: flex;
-    align-items: center;
-  }
-  
-  .user-profile img {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    margin-right: 10px;
-  }
-  
-  .user-profile .notifications i {
-    margin: 0 10px;
-    cursor: pointer;
-  }
-  
+.dropdown-item {
+  padding: 5px;
+  font-size: 14px;
+  border-bottom: 1px solid #eee;
+  cursor: pointer;
+}
+
+.dropdown-item:last-child {
+  border-bottom: none;
+}
+
+.dropdown-item:hover {
+  background-color: #f1f1f1;
+}
+
+.user-profile {
+  display: flex;
+  align-items: center;
+}
+
+.user-profile img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.user-profile .notifications i {
+  margin: 0 10px;
+  cursor: pointer;
+}
+span {
+  color: white;
+} 

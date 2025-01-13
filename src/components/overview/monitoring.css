@@ -7,6 +7,8 @@
 .monitoring-card {
   display: flex;
   flex-direction: row;
+  justify-content: center;
+  align-items: center;
   padding: 20px;
   border: 1px solid #ccc;
   border-radius: 10px;
@@ -31,14 +33,40 @@
   margin-top: 10px;
 }
 
-.analytics-section {
-  flex: 2;
+.seed-info {
+  flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
   padding: 0 20px;
 }
 
+.seed-info p {
+  margin: 5px 0;
+}
+
+.analytics-section {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0 20px;
+}
+.analytics-item button {
+  margin-left: 10px;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #28a745;
+  color: white;
+  cursor: pointer;
+  display: none;
+}
+
+.analytics-item span.red + button {
+  display: inline-block;
+}
 .analytics-item {
   display: flex;
   align-items: center;

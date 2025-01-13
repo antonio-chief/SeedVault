@@ -7,7 +7,7 @@ const Security = () => {
   const [restrictedAreas, setRestrictedAreas] = useState([]);
   const [securityBreaches, setSecurityBreaches] = useState([]);
   const [equipmentStatus, setEquipmentStatus] = useState([]);
-  const [newWorker, setNewWorker] = useState({ Name: '', AssignedPlace: '', Image: null });
+  const [newWorker, setNewWorker] = useState({ WorkerID: '', Name: '', AssignedPlace: '', Image: null });
   const [newRestrictedArea, setNewRestrictedArea] = useState({ AreaName: '', Reason: '' });
   const [showAddWorker, setShowAddWorker] = useState(false);
   const [showAddRestrictedArea, setShowAddRestrictedArea] = useState(false);
@@ -48,6 +48,7 @@ const Security = () => {
 
   const handleAddWorker = async () => {
     const formData = new FormData();
+    formData.append('WorkerID', newWorker.WorkerID);
     formData.append('Name', newWorker.Name);
     formData.append('AssignedPlace', newWorker.AssignedPlace);
     formData.append('Image', newWorker.Image);
@@ -59,7 +60,7 @@ const Security = () => {
         },
       });
       setWorkers([response.data, ...workers]);
-      setNewWorker({ Name: '', AssignedPlace: '', Image: null });
+      setNewWorker({ WorkerID: '', Name: '', AssignedPlace: '', Image: null });
       setShowAddWorker(false);
     } catch (error) {
       console.error('Failed to add worker:', error);
@@ -90,6 +91,13 @@ const Security = () => {
           <div className="add-worker">
             <input
               type="text"
+              name="WorkerID"
+              value={newWorker.WorkerID}
+              onChange={handleWorkerInputChange}
+              placeholder="Worker ID"
+            />
+            <input
+              type="text"
               name="Name"
               value={newWorker.Name}
               onChange={handleWorkerInputChange}
@@ -110,6 +118,7 @@ const Security = () => {
           {workers.map((worker) => (
             <div className="worker-card" key={worker.WorkerID}>
               {worker.Image && <img src={`http://127.0.0.1:8001${worker.Image}`} alt="Worker" />}
+              <p>ID: {worker.WorkerID}</p>
               <p>Name: {worker.Name}</p>
               <p>Assigned Place: {worker.AssignedPlace}</p>
             </div>
@@ -155,7 +164,7 @@ const Security = () => {
         <ul>
           {securityBreaches.map((breach) => (
             <li key={breach.BreachID}>
-              <strong>{breach.Date} {breach.Time}:</strong> {breach.Description}
+              <strong>{breach.BreachID}:</strong> {breach.Date} {breach.Time} - {breach.Description}
             </li>
           ))}
         </ul>

@@ -13,7 +13,6 @@ function Sidebar({ onMenuClick, activeSection }) {
           >
             Dashboard
           </li>
-        
           <li
             onClick={() => onMenuClick('settings')}
             className={activeSection === 'settings' ? 'active' : ''}
@@ -21,7 +20,6 @@ function Sidebar({ onMenuClick, activeSection }) {
           >
             Settings
           </li>
-          
         </ul>
       </nav>
       <nav className="footer-menu">
@@ -52,4 +50,5 @@ function Sidebar({ onMenuClick, activeSection }) {
     </aside>
   );
 }
+
 export default Sidebar;

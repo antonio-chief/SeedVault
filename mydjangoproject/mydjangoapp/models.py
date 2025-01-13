@@ -38,6 +38,35 @@ class seeds(models.Model):
         return self.SeedName
 
    
+# AdminSeedCatalog Model
+class AdminSeedCatalog(models.Model):
+    SeedID = models.CharField(max_length=100)
+    Category = models.CharField(max_length=50)
+    SeedType = models.CharField(max_length=50)
+    SeedName = models.CharField(max_length=100)
+    OptimalTemperature = models.CharField(max_length=50)
+    LowestTemp = models.CharField(max_length=50)
+    HighestTemp = models.CharField(max_length=50)
+    OptimalDampness = models.FloatField()
+    LowestDampness = models.FloatField()
+    HighestDampness = models.FloatField()
+    OptimalLight = models.FloatField()
+    LowestLight = models.FloatField()
+    HighestLight = models.FloatField()
+    BestPlantingWeather = models.CharField(max_length=50)
+    BestPlantingMonth = models.CharField(max_length=50)
+    AreaMostPlanted = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.SeedName
+
+class StorageFacilities(models.Model):
+    used = models.IntegerField(default=0)
+    free = models.IntegerField(default=0)
+
+    def __str__(self):
+        return "StorageFacilities"
+    
 
 #Monitoring
 class Monitoring(models.Model):
@@ -61,6 +90,27 @@ class Monitoring(models.Model):
         return self.SeedName
 
   
+# Updated Storage Model
+class Storage(models.Model):
+    SeedID = models.CharField(max_length=100, null=True, blank=True)
+    WarehouseName = models.CharField(max_length=100, null=True, blank=True)
+    WarehouseNo = models.IntegerField(null=True, blank=True)
+    ShelfNo = models.IntegerField(null=True, blank=True)
+    UnitNo = models.IntegerField(null=True, blank=True)
+    VaultName = models.CharField(max_length=100, null=True, blank=True)
+    VaultNo = models.IntegerField(null=True, blank=True)
+    SeedBankName = models.CharField(max_length=100, null=True, blank=True)
+    SeedBankNo = models.IntegerField(null=True, blank=True)
+    SeedCaseNo = models.IntegerField(null=True, blank=True)
+    CaseSectionNo = models.IntegerField(null=True, blank=True)
+    SeedBoxNo = models.IntegerField(null=True, blank=True)
+    BoxUnitNo = models.IntegerField(null=True, blank=True)
+    SeedAlbumNo = models.IntegerField(null=True, blank=True)
+    PageNo = models.IntegerField(null=True, blank=True)
+    SeedName = models.CharField(max_length=100, null=True, blank=True)
+
+    def __str__(self):
+        return self.SeedID
 
 # AdminAllUsers Model
 class AdminAllUsers(models.Model):
@@ -68,6 +118,7 @@ class AdminAllUsers(models.Model):
     UserName = models.CharField(max_length=100)
     UserEmail = models.EmailField(max_length=100)
     UserPassword = models.CharField(max_length=100)  # Use CharField for password
+    DateAdded = models.DateTimeField()
     SubscriptionStatus = models.CharField(max_length=50)
     Location = models.CharField(max_length=255)
     Age = models.IntegerField()
@@ -75,10 +126,13 @@ class AdminAllUsers(models.Model):
 
     def __str__(self):
         return self.UserName
+    
+
 # AdminFeedback Model
 class AdminFeedback(models.Model):
     UserID = models.CharField(max_length=100)
-    UserName=models.CharField(max_length=100)
+    UserName = models.CharField(max_length=100)
+    Date = models.DateTimeField()
     Feedback = models.TextField()
     Reports = models.TextField()
     Responses = models.TextField()
@@ -87,27 +141,6 @@ class AdminFeedback(models.Model):
     def __str__(self):
         return self.UserID
 
-# AdminSeedCatalog Model
-class AdminSeedCatalog(models.Model):
-    SeedID = models.CharField(max_length=100)
-    Category = models.CharField(max_length=50)
-    SeedType = models.CharField(max_length=50)
-    SeedName = models.CharField(max_length=100)
-    OptimalTemperature = models.CharField(max_length=50)
-    LowestTemp = models.CharField(max_length=50)
-    HighestTemp = models.CharField(max_length=50)
-    OptimalDampness = models.FloatField()
-    LowestDampness = models.FloatField()
-    HighestDampness = models.FloatField()
-    OptimalLight = models.FloatField()
-    LowestLight = models.FloatField()
-    HighestLight = models.FloatField()
-    BestPlantingWeather = models.CharField(max_length=50)
-    BestPlantingMonth = models.CharField(max_length=50)
-    AreaMostPlanted = models.CharField(max_length=100)
-
-    def __str__(self):
-        return self.SeedName
 
 # AdminSubscription Model
 class AdminSubscription(models.Model):
@@ -147,8 +180,8 @@ class Events(models.Model):
 # Security Model
 class Security(models.Model):
     PersonID = models.CharField(max_length=50)
-    DateAccessed = models.CharField(max_length=50)
-    TimeAccessed = models.CharField(max_length=50)
+    DateAccessed = models.DateField()
+    TimeAccessed = models.TimeField()
     RestrictedAreas = models.CharField(max_length=255)
     PlaceAccessed = models.CharField(max_length=255)
 
@@ -156,27 +189,6 @@ class Security(models.Model):
         return self.PersonID
     
 
-# Updated Storage Model
-class Storage(models.Model):
-    SeedID = models.CharField(max_length=100, null=True, blank=True)
-    WarehouseName = models.CharField(max_length=100, null=True, blank=True)
-    WarehouseNo = models.IntegerField(null=True, blank=True)
-    ShelfNo = models.IntegerField(null=True, blank=True)
-    UnitNo = models.IntegerField(null=True, blank=True)
-    VaultName = models.CharField(max_length=100, null=True, blank=True)
-    VaultNo = models.IntegerField(null=True, blank=True)
-    SeedBankName = models.CharField(max_length=100, null=True, blank=True)
-    SeedBankNo = models.IntegerField(null=True, blank=True)
-    SeedCaseNo = models.IntegerField(null=True, blank=True)
-    CaseSectionNo = models.IntegerField(null=True, blank=True)
-    SeedBoxNo = models.IntegerField(null=True, blank=True)
-    BoxUnitNo = models.IntegerField(null=True, blank=True)
-    SeedAlbumNo = models.IntegerField(null=True, blank=True)
-    PageNo = models.IntegerField(null=True, blank=True)
-    SeedName = models.CharField(max_length=100, null=True, blank=True)
-
-    def __str__(self):
-        return self.SeedID
 
 
 
@@ -265,12 +277,7 @@ class Totals(models.Model):
     def __str__(self):
         return "Totals"
 
-class StorageFacilities(models.Model):
-    used = models.IntegerField(default=0)
-    free = models.IntegerField(default=0)
 
-    def __str__(self):
-        return "StorageFacilities"
 
  
 class AdminRecommendations(models.Model):
@@ -287,6 +294,7 @@ class AdminRecommendations(models.Model):
 class Notification(models.Model):
     event = models.ForeignKey(Events, on_delete=models.CASCADE, null=True, blank=True)
     message = models.CharField(max_length=255)
+    StorageFacility = models.CharField(max_length=255)
     date_created = models.DateTimeField(auto_now_add=True)
     sensor_data = models.JSONField(null=True, blank=True)  # Field for sensor data
 

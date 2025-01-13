@@ -14,7 +14,7 @@ import CardsComponent from './CardsComponent';
 const Overview = () => {
   const [activeTab, setActiveTab] = useState('overview');
 
- //'http://127.0.0.1:8001/seeds/'     TODO: change to the port to your django port
+   // TODO: change to the port to your django port
 
   const handleTabClick = (tab) => {
     setActiveTab(tab);

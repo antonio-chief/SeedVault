@@ -1,6 +1,6 @@
 .user-profile {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     text-align: center;
 }
@@ -20,6 +20,7 @@
     display: flex;
     align-items: center;
     margin-left: 10px;
+    margin-right: 10px;
 }
 
 .dropdown-toggle {
@@ -45,14 +46,6 @@
     margin-bottom: 5px;
 }
 
-.update-username,
-.update-password {
-    margin-top: 10px;
-    
-}
-
-.update-username input,
-.update-password input {
-    margin-right: 10px;
-
+.username   {
+    color : #ffffff;
 }

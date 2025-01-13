@@ -14,14 +14,14 @@
     padding: 10px;
     margin-bottom: 30px;
     border: none;
-    background-color: #03a7d3;
+    background-color: #1A73E8;
     color: #fff;
     cursor: pointer;
     border-radius: 4px;
   }
   
   .privacy-section button:hover {
-    background-color: #03a6d3a4;
+    background-color: #1a73e8d5;
   }
   
   .privacy-section select {

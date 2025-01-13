@@ -387,6 +387,9 @@ class StorageFacilitiesAPIView(APIView):
 
 class RecommendationsAPIView(APIView):
     def get(self, request):
+        storage = StorageFacilities.objects.first()
+        serializer = StorageFacilitiesSerializer(storage) 
+
         seed_name = request.query_params.get('seed_name', None)
         text_snippet = request.query_params.get('text_snippet', None)
 

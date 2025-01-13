@@ -69,22 +69,22 @@ const Feedback = () => {
       </div>
 
       {/* Feedback History Card */}
-      <div className="feedback-history-card">
-        <h2>Feedback History</h2>
-        {feedbackHistory.length === 0 ? (
-          <p>No feedback available.</p>
-        ) : (
-          feedbackHistory.map((feedback) => (
-            <div key={feedback.id} className="feedback-item">
-              <h3>User: {feedback.UserName}</h3>
-              <p>{feedback.Feedback}</p>
-              <p>Response: {feedback.Responses}</p>
-            </div>
-          ))
-        )}
-      </div>
+        <div className="feedback-history-card">
+          <h2>Feedback History</h2>
+          {feedbackHistory.length === 0 ? (
+            <p>No feedback available.</p>
+          ) : (
+            feedbackHistory.map((feedback) => (
+          <div key={feedback.id} className="feedback-item">
+            <h3>User: {feedback.UserName}</h3>
+            <p>{feedback.Feedback}</p>
+            <p style={{ color: 'light-green' }}>Response: {feedback.Responses}</p>
+          </div>
+            ))
+          )}
+        </div>
 
-      {/* Recommendations Card */}
+        {/* Recommendations Card */}
       <div className="recommendations-card">
         <h2>Seed Recommendations</h2>
         <input

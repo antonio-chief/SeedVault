@@ -37,7 +37,7 @@
 
 .add-worker button, .add-restricted-area button {
   padding: 10px;
-  background-color: #007bff;
+  background-color: #1A73E8;
   color: #fff;
   border: none;
   border-radius: 4px;
@@ -45,7 +45,7 @@
 }
 
 .add-worker button:hover, .add-restricted-area button:hover {
-  background-color: #0056b3;
+  background-color: #1A73E8;
 }
 
 .workers-list {

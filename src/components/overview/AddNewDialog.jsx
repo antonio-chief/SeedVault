@@ -4,9 +4,8 @@ import './addnewdialog.css';
 
 const AddNewDialog = ({ type, onClose }) => {
   const [facilityData, setFacilityData] = useState({
-    type: '',
-    name: '',
-    units: 0,
+    used: 0,
+    free: 0,
   });
 
   const [seedData, setSeedData] = useState({
@@ -21,6 +20,11 @@ const AddNewDialog = ({ type, onClose }) => {
     optimalLight: '',
     optimalDampness: '',
     seedID: '',
+    plantingDate: '',
+    temperatureRequirement: '',
+    lightRequirement: '',
+    moistureRequirement: '',
+    seedQuantity: 0,
   });
 
   const [seedCatalog, setSeedCatalog] = useState(null);
@@ -82,35 +86,20 @@ const AddNewDialog = ({ type, onClose }) => {
         {type === 'storageFacility' && (
           <div>
             <label>
-              Facility Type:
-              <select
-                name="type"
-                value={facilityData.type}
-                onChange={(e) => handleInputChange(e, setFacilityData)}
-              >
-                <option value="warehouse">Warehouse</option>
-                <option value="vault">Vault</option>
-                <option value="bank">Bank</option>
-                <option value="case">Case</option>
-                <option value="album">Album</option>
-                <option value="box">Box</option>
-              </select>
-            </label>
-            <label>
-              Facility Name:
+              Used:
               <input
-                type="text"
-                name="name"
-                value={facilityData.name}
+                type="number"
+                name="used"
+                value={facilityData.used}
                 onChange={(e) => handleInputChange(e, setFacilityData)}
               />
             </label>
             <label>
-              Units:
+              Free:
               <input
                 type="number"
-                name="units"
-                value={facilityData.units}
+                name="free"
+                value={facilityData.free}
                 onChange={(e) => handleInputChange(e, setFacilityData)}
               />
             </label>
@@ -137,6 +126,12 @@ const AddNewDialog = ({ type, onClose }) => {
                 onChange={(e) => handleInputChange(e, setSeedData)}
               >
                 <option value="herb">Herb</option>
+                <option value="vegetable">Vegetable</option>
+                <option value="flower">Flower</option>
+                <option value="fruit">Fruit</option>
+                <option value="legume">Legume</option>
+                <option value="cereal">Cereal</option>
+                <option value="spice">Spice</option>
                 <option value="other">Other</option>
               </select>
             </label>
@@ -173,6 +168,51 @@ const AddNewDialog = ({ type, onClose }) => {
                 type="date"
                 name="expiryDate"
                 value={seedData.expiryDate}
+                onChange={(e) => handleInputChange(e, setSeedData)}
+              />
+            </label>
+            <label>
+              Planting Date:
+              <input
+                type="date"
+                name="plantingDate"
+                value={seedData.plantingDate}
+                onChange={(e) => handleInputChange(e, setSeedData)}
+              />
+            </label>
+            <label>
+              Temperature Requirement:
+              <input
+                type="number"
+                name="temperatureRequirement"
+                value={seedData.temperatureRequirement}
+                onChange={(e) => handleInputChange(e, setSeedData)}
+              />
+            </label>
+            <label>
+              Light Requirement:
+              <input
+                type="number"
+                name="lightRequirement"
+                value={seedData.lightRequirement}
+                onChange={(e) => handleInputChange(e, setSeedData)}
+              />
+            </label>
+            <label>
+              Moisture Requirement:
+              <input
+                type="number"
+                name="moistureRequirement"
+                value={seedData.moistureRequirement}
+                onChange={(e) => handleInputChange(e, setSeedData)}
+              />
+            </label>
+            <label>
+              Seed Quantity:
+              <input
+                type="number"
+                name="seedQuantity"
+                value={seedData.seedQuantity}
                 onChange={(e) => handleInputChange(e, setSeedData)}
               />
             </label>

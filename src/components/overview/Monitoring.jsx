@@ -52,10 +52,11 @@ const Monitoring = () => {
     } else if (value > highLimit) {
       return { status: 'high', icon: '🔺', color: 'red' };
     } else {
-      return { status: 'normal', icon: '', color: 'black' };
+      return { status: 'normal', icon: '✔️', color: 'green' };
     }
   };
 
+  //TODO: Add the image section functionality
   const handleImageUpload = (event, seedID) => {
     const file = event.target.files[0];
     const updatedSeedsData = seedsData.map(seed => 
@@ -102,32 +103,63 @@ const Monitoring = () => {
           monitoring.LowLightLimit,
           monitoring.HighLightLimit
         );
-
+                    //TODO: Add the image section functionality
         return (
           <div className="monitoring-card" key={seed.SeedID}>
-            <div className="image-section">
+            <div className="image-section"> 
               {seed.image ? <img src={seed.image} alt="Seed" /> : <span>No Image</span>}
               <input type="file" accept="image/*" onChange={(event) => handleImageUpload(event, seed.SeedID)} />
             </div>
+            <div className="seed-info">
+              <p>Seed ID: <strong>{seed.SeedID}</strong></p>
+              <p>Seed Name: <strong>{seed.SeedName}</strong></p>
+            </div>
             <div className="analytics-section">
               <div className="analytics-item">
-                <span>Temperature: {temperatureStatus.status}</span>
-                <span style={{ color: temperatureStatus.color }}>{temperatureStatus.icon}</span>
+          <span style={{ color: temperatureStatus.color }}>
+            Temperature: <strong>{monitoring.CurrentTemperature}</strong>°C <strong>{temperatureStatus.status}</strong> {temperatureStatus.icon}
+          </span>
+          {temperatureStatus.status !== 'optimal' && (
+            <button onClick={() => {
+              // Send command to adjust temperature
+              // Example: axios.post('http://127.0.0.1:8001/adjust-temperature', { seedID: seed.SeedID, action: 'adjust' });
+            }}>
+              Resolve
+            </button>
+          )}
               </div>
               <div className="analytics-item">
-                <span>Humidity: {humidityStatus.status}</span>
-                <span style={{ color: humidityStatus.color }}>{humidityStatus.icon}</span>
+          <span style={{ color: humidityStatus.color }}>
+            Humidity: <strong>{monitoring.CurrentDampness}</strong>% <strong>{humidityStatus.status}</strong> {humidityStatus.icon}
+          </span>
+          {humidityStatus.status !== 'optimal' && (
+            <button onClick={() => {
+              // Send command to adjust humidity
+              // Example: axios.post('http://127.0.0.1:8001/adjust-humidity', { seedID: seed.SeedID, action: 'adjust' });
+            }}>
+              Resolve
+            </button>
+          )}
               </div>
               <div className="analytics-item">
-                <span>Light Intensity: {lightIntensityStatus.status}</span>
-                <span style={{ color: lightIntensityStatus.color }}>{lightIntensityStatus.icon}</span>
+          <span style={{ color: lightIntensityStatus.color }}>
+            Light Intensity: <strong>{monitoring.CurrentLight}</strong> lx <strong>{lightIntensityStatus.status}</strong> {lightIntensityStatus.icon}
+          </span>
+          {lightIntensityStatus.status !== 'optimal' && (
+            <button onClick={() => {
+              // Send command to adjust light intensity
+              // Example: axios.post('http://127.0.0.1:8001/adjust-light', { seedID: seed.SeedID, action: 'adjust' });
+            }}>
+              Resolve
+            </button>
+          )}
               </div>
             </div>
             <div className="details-section">
-              <p>Planting Date: {seed.PlantingDate || '-'}</p>
-              <p>Buying Date: {seed.DateBought || '-'}</p>
-              <p>Expiry Date: {seed.ExpiryDate || '-'}</p>
-              <p>Storage Facility: {storage.WarehouseName || storage.VaultName || storage.SeedBankName || '-'}</p>
+              <p>Planting Date: <strong>{seed.PlantingDate || '-'}</strong></p>
+              <p>Buying Date: <strong>{seed.DateBought || '-'}</strong></p>
+              <p>Expiry Date: <strong>{seed.ExpiryDate || '-'}</strong></p>
+              <p>Storage Facility: <strong>{storage.WarehouseName || storage.VaultName || storage.SeedBankName || '-'}</strong></p>
             </div>
           </div>
         );

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Icon, Card } from 'semantic-ui-react';
 
+
 const SecurityCard = () => {
     const [securityStatus, setSecurityStatus] = useState(null);
 

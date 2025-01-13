@@ -20,11 +20,11 @@
   }
   
   .preference-section button {
-    background-color: #03a7d3;
+    background-color: #1A73E8;
     color: #fff;
     cursor: pointer;
   }
   
   .preference-section button:hover {
-    background-color: #03a6d3a4;
+    background-color: #1a73e8d7;
   }

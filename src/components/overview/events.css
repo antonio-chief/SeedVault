@@ -18,14 +18,14 @@
   width: fit-content;
   padding: 10px;
   font-size: 16px;
-  background-color: #03a7d3;
+  background-color: #1A73E8;
   color: white;
   border: none;
   cursor: pointer;
 }
 
 .events-container button:hover {
-  background-color: #0056b3;
+  background-color: #1a73e8b6;
 }
 
 .dialog {
@@ -53,14 +53,14 @@
 .dialog form button {
   padding: 10px;
   font-size: 16px;
-  background-color: #007bff;
+  background-color: #1A73E8;
   color: white;
   border: none;
   cursor: pointer;
 }
 
 .dialog form button:hover {
-  background-color: #0056b3;
+  background-color: #1a73e8b6;
 }
 
 .dialog form button[type="button"] {
